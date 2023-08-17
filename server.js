@@ -13,7 +13,7 @@ const connectDB=require('./config/database')
 require("dotenv").config({ path: "./config/.env" });
 
 const mainRoutes=require('./routes/main')
-// const postRoutes=require('./routes/post')
+const postRoutes=require('./routes/post')
 
 require('./config/passport')(passport)
 
@@ -48,7 +48,7 @@ app.use(flash())
 
 //Setup Routes For Which The Server Is Listening
 app.use("/", mainRoutes);
-// app.use("/post", postRoutes);
+app.use("/post", postRoutes);
 
 //Server Running
 PORT=8000
