@@ -13,7 +13,7 @@ const connectDB=require('./config/database')
 require("dotenv").config({ path: "./config/.env" });
 
 const mainRoutes=require('./routes/main')
-const postRoutes=require('./routes/post')
+// const postRoutes=require('./routes/post')
 
 require('./config/passport')(passport)
 
@@ -51,7 +51,8 @@ app.use("/", mainRoutes);
 // app.use("/post", postRoutes);
 
 //Server Running
-app.listen(process.env.PORT, () => {
+PORT=8000
+app.listen(PORT, () => {
   console.log("Server is running, you better catch it!");
 });
 
