@@ -22,16 +22,62 @@ module.exports = {
   },
   getPost:async (req,res)=>{
     try{
-        const post=Post.findById(req.params.id)
+        const post=await Post.findById(req.params.id)
         res.render("post.ejs",{post:post,user:req.user})
+        console.log(post.image)
     }
     catch(error){
         console.log(error)
     }
   },
-  createPost:(req,res)=>{
+  createPost:async (req,res)=>{
     try{
+      const result=await cloudinary.uploader.upload(req.file.path)
 
+      await Post.create({
+        title:req.body.title,
+        image:result.secure_url,
+        cloudinaryId:result.public_id,
+        caption:req.body.caption,
+        likes:0,
+        user:req.user.id,
+      })
+      console.log("post has been added")
+      res.redirect("/profile")
     }
-  }
+    catch(error){
+      console.log(err)
+    }
+  },
+
+  likePost:async(req,res)=>{
+    try{
+      await Post.findOneAndUpdate({
+        _id:req.params.id,
+      },
+      {
+        $inc:{likes:1},
+      })
+      console.log("like+1")
+      res.redirect(`/post/${req.params.id}`)
+    }
+    catch(error){
+      console.log(error)
+    }
+  },
+
+  deletePost:async (req,res)=>{
+    try{
+      let post=await Post.findById({_id:req.params.id})
+
+      await cloudinary.uploader.destroy(post.cloudinaryId)
+      await Post.remove({_id:req.params.id})
+      console.log("deleted post")
+      res.redirect("/profile")
+    }
+    catch(err){
+      res.redirect("/profile")
+    }
+  },
+
 }
