@@ -69,13 +69,13 @@ module.exports = {
   deletePost:async (req,res)=>{
     try{
       let post=await Post.findById({_id:req.params.id})
-
       await cloudinary.uploader.destroy(post.cloudinaryId)
-      await Post.remove({_id:req.params.id})
+      await Post.deleteOne({_id:req.params.id})
       console.log("deleted post")
       res.redirect("/profile")
     }
     catch(err){
+      console.log(err)
       res.redirect("/profile")
     }
   },

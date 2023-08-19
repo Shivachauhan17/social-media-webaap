@@ -7,6 +7,7 @@ const session=require('express-session')
 const MongoStore=require('connect-mongo')
 const flash=require('express-flash')
 const logger=require('morgan')
+const methodOverride = require('method-override');
 
 
 const connectDB=require('./config/database')
@@ -23,6 +24,8 @@ app.use(express.static('public'))
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(logger('dev'))
+app.use(methodOverride('_method'));
+
 
 let store = new MongoStore({
     mongoUrl: process.env.DB_STRING,
