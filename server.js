@@ -47,6 +47,7 @@ session({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
+app.use(express.static(path.join(__dirname, 'build')));
 
 
 //Setup Routes For Which The Server Is Listening
