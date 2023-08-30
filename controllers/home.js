@@ -1,5 +1,11 @@
 module.exports = {
     getIndex: (req, res) => {
-      res.render("index.ejs");
+      const info={
+        loginUrl:"/login",
+        signupUrl:"/signup",
+        button1:"LOGIN",
+        button2:"SIGNUP"
+      }
+      res.json(info);
     },
   };

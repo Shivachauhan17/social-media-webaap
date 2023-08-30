@@ -1,5 +1,7 @@
 const express=require('express')
 const app=express()
+const path=require('path')
+const cors=require('cors')
 const mongoose=require('mongoose')
 const {urlencoded}=require('body-parser')
 const passport=require('passport')
@@ -8,7 +10,6 @@ const MongoStore=require('connect-mongo')
 const flash=require('express-flash')
 const logger=require('morgan')
 const methodOverride = require('method-override');
-
 
 const connectDB=require('./config/database')
 require("dotenv").config({ path: "./config/.env" });
@@ -24,6 +25,7 @@ app.use(express.static('public'))
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(logger('dev'))
+app.use(cors())
 app.use(methodOverride('_method'));
 
 
