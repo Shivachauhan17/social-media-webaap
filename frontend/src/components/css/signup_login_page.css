@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    font-family: 'Archivo Black', sans-serif;
 }
 #root{
     background-image: url('../../../public/img/homepage.avif');
@@ -11,13 +12,15 @@
 }
 .wrapper>h2{
     color: azure;
-    font-family: cursive;
+    font-family: 'Cedarville Cursive', cursive;
     font-size:xx-large;
-    -webkit-text-stroke: 1px rgb(0, 140, 255);
+    font-weight: bolder;   
+    color: gainsboro;    
+    /* -webkit-text-stroke: 1px rgb(0, 140, 255);
 	text-shadow: -1px 1px 2px rgb(0, 140, 255),
 				  1px 1px 2px rgb(0, 140, 255),
 				  1px -1px 0 rgb(0, 140, 255),
-				  -1px -1px 0 rgb(0, 140, 255);
+				  -1px -1px 0 rgb(0, 140, 255); */
 }
 .border{
     width: 250px;
@@ -38,4 +41,7 @@
     gap:20px
 }
 
+.rounded{
+    text-align: center;
+}
 

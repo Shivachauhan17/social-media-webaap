@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import LoginSignup from './components/signup_login_page'
+// import Header from "./components/header";
+import Login from './components/login'
 
 function App() {
   const [homeres, setHomeres] = useState("");
+  // const [url,setUrl]=useState("");
   useEffect(() => {
     fetch("http://localhost:8000/")
       .then((res) => res.json())
@@ -13,12 +16,16 @@ function App() {
       })
   }, []);
 
-  console.log("the data is:",homeres)
+
+  console.log("curr url is:",window.location.href)
   return (
     <div className="App">
-      <LoginSignup loginUrl={homeres.loginUrl} signupUrl={homeres.signupUrl} 
-      button1={homeres.button1} button2={homeres.button2} 
-      bootclass1={"btn btn-outline-primary"} bootclass2={"btn btn-outline-success"}/>
+      {/* <LoginSignup loginUrl={homeres.loginUrl} signupUrl={homeres.signupUrl} 
+       button1={homeres.button1} button2={homeres.button2} 
+       bootclass1={"btn btn-outline-primary"} bootclass2={"btn btn-outline-success"}/>  */}
+
+      <Login profileUrl='/profile' feedUrl='/feed'/>
+
     </div>
   );
 }
