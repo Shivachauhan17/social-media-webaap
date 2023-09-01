@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import './css/signup_login_page.css'
 
 
 
-export default function LoginSignup({loginUrl,signupUrl,button1,button2,bootclass1,bootclass2}){
+export function LoginSignupHelper({loginUrl,signupUrl,button1,button2,bootclass1,bootclass2}){
 
     return(
         <div>
@@ -22,5 +22,25 @@ export default function LoginSignup({loginUrl,signupUrl,button1,button2,bootclas
                 </div>
             </div>
         </div>
+    )
+}
+
+export default function LoginSignup(){
+    const [homeres, setHomeres] = useState("");
+    // const [url,setUrl]=useState("");
+    useEffect(() => {
+      fetch("http://localhost:8000/")
+        .then((res) => res.json())
+        .then((data) => {
+          setHomeres(data)})
+        .catch(err=>{
+          console.log(err)
+        })
+    }, []);
+
+    return(
+        <LoginSignupHelper loginUrl={homeres.loginUrl} signupUrl={homeres.signupUrl} 
+        button1={homeres.button1} button2={homeres.button2} 
+        bootclass1={"btn btn-outline-primary"} bootclass2={"btn btn-outline-success"}/>
     )
 }

@@ -3,29 +3,23 @@ import LoginSignup from './components/signup_login_page'
 // import Header from "./components/header";
 import Login from './components/login'
 
+function Decider({url}){
+  if(url==='http://localhost:3000/'){
+    return(
+      <LoginSignup />
+    )
+  }
+  else{
+    return(
+      <Login profileUrl='/profile' feedUrl='/feed'/>
+    ) 
+  }
+}
+
 function App() {
-  const [homeres, setHomeres] = useState("");
-  // const [url,setUrl]=useState("");
-  useEffect(() => {
-    fetch("http://localhost:8000/")
-      .then((res) => res.json())
-      .then((data) => {
-        setHomeres(data)})
-      .catch(err=>{
-        console.log(err)
-      })
-  }, []);
-
-
-  console.log("curr url is:",window.location.href)
   return (
     <div className="App">
-      {/* <LoginSignup loginUrl={homeres.loginUrl} signupUrl={homeres.signupUrl} 
-       button1={homeres.button1} button2={homeres.button2} 
-       bootclass1={"btn btn-outline-primary"} bootclass2={"btn btn-outline-success"}/>  */}
-
-      <Login profileUrl='/profile' feedUrl='/feed'/>
-
+      <Decider url={window.location.href} />
     </div>
   );
 }

@@ -32,6 +32,7 @@
     align-items: center;
     flex-flow: wrap column;
     gap: 40px;
+    color: black;
 }
 
 
