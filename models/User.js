@@ -4,9 +4,8 @@ const mongoose = require('mongoose')
 //schema is contructor function for the the databse collection
 
 const   UserSchema= new mongoose.Schema({
-    userName:{type:String,unique:true},
-    email:{type:String,unique:true},
-    password:String,   
+    username:{type:String,unique:true},
+    password:String,
 })
 
 // Password hash middleware.
@@ -24,16 +23,14 @@ UserSchema.pre('save', function save(next) {
     })
   })
   
-  //Helper method for validating user password
-
-  UserSchema.methods.comparePassword= async function comparePassword(candidatePassword){
-    try{
-        const isMatch=await bcrypt.compare(candidatePassword,this.password)
-        return isMatch
-    }
-    catch(error){
-        throw(err)
-        }
-    }
-
+  
+  // Helper method for validating user's password.
+  
+  UserSchema.methods.comparePassword = function comparePassword(candidatePassword, cb) {
+    bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+      cb(err, isMatch)
+    })
+  }
+  
+  
 module.exports=mongoose.model('User',UserSchema)

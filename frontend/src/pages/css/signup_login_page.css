@@ -2,9 +2,9 @@
     box-sizing: border-box;
     font-family: 'Archivo Black', sans-serif;
 }
-#root{
+/* #root{
     background-image: url('../../../public/img/homepage.avif');
-}
+} */
 .wrapper{
     display: flex;
     flex-direction: column;

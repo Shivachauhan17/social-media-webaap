@@ -1,22 +1,19 @@
 import React,{useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import './css/signup.css'
-import {Header4LoginSignup} from './login'
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-export default function SignupHelper({profileUrl,feedUrl}){
+export default function SignupHelper(){
+    const navigate=useNavigate();
+    const [status,setStatus]=useState("");
+    const [errors,setErrors]=useState([]);
     const [formdata,setFormdata]=useState({
-        email:"",
+
         userName:"",
         password:"",
         confirmPassword:""
     })
-
-    function handleEmailChange(e){
-        setFormdata({
-          ...formdata,
-          email: e.target.value,
-        });
-      };
     
       function handleNameChange(e){
         setFormdata({
@@ -41,21 +38,19 @@ export default function SignupHelper({profileUrl,feedUrl}){
         e.preventDefault();
     
         try {
-          const response = await fetch('http://localhost:8000/signup', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formdata),
-          });
-    
-          if (response.ok) {
-            // Handle success
-            console.log('Data sent successfully');
-          } else {
-            // Handle errors
-            console.error('Error sending data');
+          let response = await axios.post('http://localhost:8000/signup',formdata)
+          response=await response.data;
+          if(response.error){
+            setErrors(response.error)
+            console.log(errors)
           }
+          else{
+            setStatus(response.status)
+            if(status){
+            navigate('/login')}
+          }
+          
+          
         } catch (error) {
           console.error('Error:', error);
         }
@@ -63,22 +58,8 @@ export default function SignupHelper({profileUrl,feedUrl}){
 
     return(
         <div className='upperWrapper'>
-            <Header4LoginSignup className='wrapper1' profileUrl={profileUrl} feedUrl={feedUrl}/>
             
                 <form className='loginForm' onSubmit={handleSubmit}>
-                    <div>
-                        <label for="exampleInputEmail1" 
-                            >Email address</label
-                        >
-                        <input
-                            type="email"
-                            aria-describedby="emailHelp"
-                            name="email"
-                            value={formdata.email}
-                            className='form-control'
-                            onChange={handleEmailChange}
-                        />
-                    </div>
                     <div>
                         <label for="exampleInputEmail1" 
                             >username</label

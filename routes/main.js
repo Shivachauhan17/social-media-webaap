@@ -4,6 +4,7 @@ const authController=require('../controllers/auth.js')
 const homeController=require('../controllers/home')
 const postsController=require('../controllers/posts')
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
+const passport = require('passport')
 
 router.get("/", homeController.getIndex);
 router.get("/profile", ensureAuth, postsController.getProfile);

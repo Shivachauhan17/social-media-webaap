@@ -2,14 +2,13 @@ const express=require('express')
 const app=express()
 const path=require('path')
 const cors=require('cors')
-const mongoose=require('mongoose')
-const {urlencoded}=require('body-parser')
 const passport=require('passport')
 const session=require('express-session')
 const MongoStore=require('connect-mongo')
 const flash=require('express-flash')
 const logger=require('morgan')
 const methodOverride = require('method-override');
+const cookieParser=require('cookie-parser')
 
 const connectDB=require('./config/database')
 require("dotenv").config({ path: "./config/.env" });
@@ -20,46 +19,36 @@ const postRoutes=require('./routes/post')
 require('./config/passport')(passport)
 
 connectDB()
-app.set('view engine','ejs')
-app.use(express.static('public'))
+app.use(cors({origin:'http://localhost:3000'}))
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
-app.use(logger('dev'))
-app.use(cors())
-app.use(methodOverride('_method'));
-
-
-let store = new MongoStore({
-    mongoUrl: process.env.DB_STRING,
-    collection: "sessions"
-  });
-
 
 app.use(
-session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: false,
-    // so we are gonna have our session info in our mongo database
-    // store: new MongoStore({ mongooseConnection: mongoose.connection }),
-    store:store,
+  session({
+      secret: 'keyboard cat',
+      resave: false,//don't save session is unmodified
+      saveUninitialized: false,//don't create session untill something is stores
+      store: MongoStore.create({
+        mongoUrl: process.env.DB_STRING,
+        collection: 'sessions'
+      })  
+  })
+  )
+
+require('./config/passport')(passport)
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use((req,res,next)=>{
+  console.log("session data:",req.session);
+  console.log("user:",req.user);
+  next(); 
 })
-)
 
-app.use(passport.initialize())
-app.use(passport.session())
-app.use(flash())
-app.use(express.static(path.join(__dirname, 'build')));
+app.use('/',mainRoutes)
+app.use('/post',postRoutes)
 
 
-//Setup Routes For Which The Server Is Listening
-app.use("/", mainRoutes);
-app.use("/post", postRoutes);
-
-//Server Running
-PORT=8000
-app.listen(PORT, () => {
+app.listen(8000, () => {
   console.log("Server is running, you better catch it!");
 });
-
-
