@@ -1,0 +1,23 @@
+*{
+    box-sizing: border-box;
+    color: black;
+}
+
+.header>h2{
+    font-family: 'Cedarville Cursive', cursive;
+    color: black;
+    font-weight: bolder;
+}
+.header>div>a{
+    color: black;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.headerLinks>a{
+    display:inline-block;
+    padding: 0 100px;
+}

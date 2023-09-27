@@ -1,19 +1,11 @@
 *{
     box-sizing: border-box;
     font-family: 'Archivo Black', sans-serif;
-    color: white;
 }
 
 .wrapper1{
     border-top: 1px solid black;
     border-bottom: 1px solid black;
-}
-
-.header{
-    padding: 10px;
-    display: flex;
-    justify-content: space-around;
-    align-content: center;
 }
 
 .loginForm{
@@ -42,20 +34,5 @@ input{
     color: black;
 }
 
-a{
-    text-decoration: none;
-    color:white;
-}
 
-.header>h2{
-    font-family: 'Cedarville Cursive', cursive;
-    font-size:xx-large;
-    font-weight: bolder;   
-    color: gainsboro;    
-    opacity: 1;
-    /* -webkit-text-stroke: 1px rgb(0, 140, 255);
-	text-shadow: -1px 1px 2px rgb(0, 140, 255),
-				  1px 1px 2px rgb(0, 140, 255),
-				  1px -1px 0 rgb(0, 140, 255),
-				  -1px -1px 0 rgb(0, 140, 255); */
-}
+

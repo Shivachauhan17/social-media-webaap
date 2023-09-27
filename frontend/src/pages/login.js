@@ -2,19 +2,9 @@ import React,{useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import './css/login.css'
 import { useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
 import axios from 'axios';
 
-export function Header4LoginSignup(){
-    return(
-        <div className='bg-dark'>
-            <div className='header'>
-                <h2>Friends loop</h2>
-                    <a href='/profile'>Profile</a>
-                    <a href= '/feed'>Feed</a>
-            </div>
-        </div>
-    )
-}
 
 export default function LoginHelper(){
     const navigate=useNavigate();
@@ -62,9 +52,9 @@ export default function LoginHelper(){
 
     return(
         <div className='upperWrapper'>
-            <Header4LoginSignup className='wrapper1' profileUrl='/profile' feedUrl='feed'/>
+            <Header />
             
-                <form className='loginForm' onSubmit={handleSubmit}>
+                <form className='loginForm border shadow-lg p-3 mb-5 bg-body-tertiary rounded' onSubmit={handleSubmit}>
                     <div>
                         <label for="exampleInputEmail1" 
                             >Email address</label

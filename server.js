@@ -19,7 +19,7 @@ const postRoutes=require('./routes/post')
 require('./config/passport')(passport)
 
 connectDB()
-app.use(cors({origin:'http://localhost:3000'}))
+app.use(cors())
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
@@ -39,11 +39,11 @@ require('./config/passport')(passport)
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use((req,res,next)=>{
-  console.log("session data:",req.session);
-  console.log("user:",req.user);
-  next(); 
-})
+// app.use((req,res,next)=>{
+//   console.log("session data:",req.session);
+//   console.log("user:",req.user);
+//   next(); 
+// })
 
 app.use('/',mainRoutes)
 app.use('/post',postRoutes)
