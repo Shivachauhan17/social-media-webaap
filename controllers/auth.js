@@ -57,6 +57,11 @@ exports.getLogout = (req, res) => {
         if (validationErrors.length) {
           return res.json({error:validationErrors})
         }
+        const existingUser=await User.findOne({$or:[{username:req.body.userName}]})
+        console.log("existing user:",existingUser)
+        if(existingUser !== null && existingUser !== undefined){ 
+          console.log("user existed")
+          return res.json({error:["user already exists"]})}
         
         console.log("creating user")
         const user = new User({
@@ -64,13 +69,8 @@ exports.getLogout = (req, res) => {
           password:req.body.password
         })
         try{
-        const existingUser=await User.findOne({$or:[{username:req.body.userName}]})
-        console.log("existing user:",existingUser)
-        if(existingUser !== null && existingUser !== undefined){ 
-          console.log("user existed")
-          return res.json({error:["user already exists"]})}
+        
           user.save()
-          console.log("going to call req.login")
             req.logIn(user,(err)=>{
               if(err) return res.json({error:[err]})
               res.json({user:user})

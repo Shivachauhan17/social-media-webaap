@@ -18,8 +18,12 @@ const postRoutes=require('./routes/post')
 
 require('./config/passport')(passport)
 
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true, // Allow cookies to be sent with requests
+};
 connectDB()
-app.use(cors())
+app.use(cors(corsOptions))
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
