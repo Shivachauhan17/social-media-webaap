@@ -1,17 +1,21 @@
 import React,{useState,useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import './css/signup_login_page.css'
+import Cookie from '../components/Cookie'
 import axios from "axios";
 
 const LoginSignup= ()=>{
-
-        const [user,setUser]=useState("");
+    const cookieData=Cookie();
+    const navigate=useNavigate();
+       
         useEffect(()=>{
-            axios.get('http://localhost:8000/')
-                .then(res=>{
-                    console.log(res)
-                })
-                .catch(err=>console.log(err))
+          if(cookieData.getUserCookie()){
+            
+            const user=cookieData.getUserCookie();
+
+            navigate('/profile');
+          }
         },[])
 
         

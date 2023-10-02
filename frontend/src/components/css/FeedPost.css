@@ -1,0 +1,18 @@
+*{
+    box-sizing: border-box;
+}
+
+.feedPost{
+    height: 285px;
+    width: 200px;
+    /* border: 1px solid gray; */
+    border-radius: 10px;
+}
+
+.feedPost>img{
+    border-radius: 10px;
+    /* border-top-right-radius: 10px; */
+    /* border-bottom: 1px solid gray; */
+    height: 250px;
+    width: 100%;
+}

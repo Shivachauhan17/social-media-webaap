@@ -10,6 +10,8 @@
 }
 .header>div>a{
     color: black;
+    font-weight: bolder;
+    
 }
 
 .header{
@@ -20,4 +22,10 @@
 .headerLinks>a{
     display:inline-block;
     padding: 0 100px;
+}
+
+.logoutButton{
+    border: 0px;
+    background: none;
+    font-weight: bolder;
 }
