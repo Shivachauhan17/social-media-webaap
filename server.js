@@ -2,7 +2,7 @@ const express=require('express')
 const app=express()
 const path=require('path')
 const cors=require('cors')
-const passport=require('passport')
+// const passport=require('passport')
 const session=require('express-session')
 const MongoStore=require('connect-mongo')
 const flash=require('express-flash')
@@ -16,7 +16,7 @@ require("dotenv").config({ path: "./config/.env" });
 const mainRoutes=require('./routes/main')
 const postRoutes=require('./routes/post')
 
-require('./config/passport')(passport)
+// require('./config/passport')(passport)
 
 const corsOptions = {
   origin: 'http://localhost:3000',
@@ -27,22 +27,22 @@ app.use(cors(corsOptions))
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
-app.use(
-  session({
-      secret: 'keyboard cat',
-      resave: false,//don't save session is unmodified
-      saveUninitialized: false,//don't create session untill something is stores
-      store: MongoStore.create({
-        mongoUrl: process.env.DB_STRING,
-        collection: 'sessions'
-      })  
-  })
-  )
+// app.use(
+//   session({
+//       secret: 'keyboard cat',
+//       resave: false,//don't save session is unmodified
+//       saveUninitialized: false,//don't create session untill something is stores
+//       store: MongoStore.create({
+//         mongoUrl: process.env.DB_STRING,
+//         collection: 'sessions'
+//       })  
+//   })
+//   )
 
-require('./config/passport')(passport)
+// require('./config/passport')(passport)
 
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 // app.use((req,res,next)=>{
 //   console.log("session data:",req.session);
 //   console.log("user:",req.user);

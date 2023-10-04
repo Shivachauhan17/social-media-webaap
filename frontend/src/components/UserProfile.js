@@ -38,7 +38,7 @@ const UserProfile=({username,profile_url})=>{
     return(
         <div className="UserProfile">
             <div className="profileSec">
-                <img src='https://imgs.search.brave.com/-BHk2hrIGYGndzLSPDGN74NzhBlfUF4E7b13kBz8OzI/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMy8w/OC8wNy8xOS8zNy9y/b3NlLTgxNzU4MzBf/NjQwLmpwZw'/>
+                <img src='https://imgs.search.brave.com/VvgsH1Hqhc651RE68EnGf2N-K_XMRd-Djc-ks8aQFbA/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9ibG9n/Z2VyLmdvb2dsZXVz/ZXJjb250ZW50LmNv/bS9pbWcvYS9BVnZY/c0VpdnYxeU1rekJP/SkRCdjRvYU00Ny1V/VXQtVFU0bXNEYm5p/dk9FQmdjMTR6RHpn/bTZ3NGZiOXNUQzRw/ZnFxcmVaTnhEOE5Q/Z0pjdkJxcmZlcnlu/X29zVmF1Y2ZxR1M1/N1pobE1XMmxISGpO/cGVXd3hsTEoyMzhS/cm9aNTlWeU00dkZV/YUI4WEZqWk5iM2pv/dXhkeXNySnFiaHJZ/S3pJSTYyV2RocHFD/M0xrTGtaOVh3Q05z/a1dGUVNseDNZQT13/NDMyLWg2NDA.jpeg'/>
             
                 <h3>{username}</h3>
                 

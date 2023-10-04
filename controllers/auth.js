@@ -2,10 +2,10 @@ const passport=require('passport')
 const  validator=require('validator')
 const User=require('../models/User');
 const { json } = require('body-parser');
+const genPassword=require('../lib/passwordUtils').genPassword
+const validPassword=require('../lib/passwordUtils').validPassword
 
-
-
-exports.postLogin=(req,res,next)=>{
+exports.postLogin=async (req,res,next)=>{
   const validationErrors=[]
   if (validator.isEmpty(req.body.password)) validationErrors.push({ message: 'Password cannot be blank.' })
   if (validator.isEmpty(req.body.username)) validationErrors.push({ message: 'Username cannot be blank.' })
@@ -14,20 +14,30 @@ exports.postLogin=(req,res,next)=>{
     return res.json({errors:validationErrors})
   }
   
-  passport.authenticate('local',(err,user,info)=>{
-    console.log('passport.authenticate')
-    if(err) {return res.json({error:err})}
+  // passport.authenticate('local',(err,user,info)=>{
+  //   console.log('passport.authenticate')
+  //   if(err) {return res.json({error:err})}
     
-    if(!user){  
-      return res.json({error:info})
-    }
+  //   if(!user){  
+  //     return res.json({error:info})
+  //   }
     
-    req.logIn(user,(err)=>{
-      if(err) return res.json({error:err})
-      res.json({user:user})
-    })
+  //   req.logIn(user,(err)=>{
+  //     if(err) return res.json({error:err})
+  //     res.json({user:user})
+  //   })
     
-  })(req, res, next)
+  // })(req, res, next)
+  const password=req.body.password;
+  const users=await User.find({"username":req.body.username})
+  const user=users[0]
+  
+  if(validPassword(req.body.password,user.password,user.salt)){
+    return res.json({user:req.body.username})
+  }
+  else{
+    return res.json({error:"Invalid user"})
+  }
 
 }
 
@@ -64,23 +74,34 @@ exports.getLogout = (req, res) => {
           return res.json({error:["user already exists"]})}
         
         console.log("creating user")
-        const user = new User({
+        const saltHash=genPassword(req.body.password)
+        const salt=saltHash.salt;
+        const hash=saltHash.hash;
+
+        // const user = new User({
+        //   username: req.body.userName,
+        //   password:req.body.password
+        // })
+        const newUser = new User({
           username: req.body.userName,
-          password:req.body.password
+          password:hash,
+          salt:salt
         })
-        try{
+        // try{
         
-          user.save()
-            req.logIn(user,(err)=>{
-              if(err) return res.json({error:[err]})
-              res.json({user:user})
-            })
-            console.log(" after req.login")
-          }
-          catch(err){
-            return res.json({error:[err]})
-          }
+        //   user.save()
+        //     req.logIn(user,(err)=>{
+        //       if(err) return res.json({error:[err]})
+        //       res.json({user:user})
+        //     })
+        //     console.log(" after req.login")
+        //   }
+        //   catch(err){
+        //     return res.json({error:[err]})
+        //   }
           
+        newUser.save()
+        return res.json({user:req.body.userName})
        
     }
         

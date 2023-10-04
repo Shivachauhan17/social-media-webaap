@@ -1,14 +1,14 @@
 import React,{useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import './css/SignupForm.css'
-import Errors from './Errors'
 import { useNavigate } from 'react-router-dom';
+import Cookie from './Cookie'
+import Swal from 'sweetalert2'
 import axios from 'axios';
 
 export default function SignupHelper(){
+  const cookie=Cookie();
     const navigate=useNavigate();
-    const [status,setStatus]=useState("");
-    const [errors,setErrors]=useState([]);
     const [formdata,setFormdata]=useState({
 
         userName:"",
@@ -41,19 +41,27 @@ export default function SignupHelper(){
         try {
           let response = await axios.post('http://localhost:8000/signup',formdata)
           response=await response.data;
+          console.log(response)
           if(response.error){
-            console.log(response.errors)
-            setErrors(response.error)
+            const error=response.error
+            const errorListHTML = `<ul>${error.map((err) => `<li>${err}</li>`).join("")}</ul>`;
+
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+              footer: errorListHTML,
+            })
             
           }
           else{
-            setStatus(response.status)
-            if(status){
-            navigate('/login')}
+            cookie.setUserCookie(response.user)
+            navigate('/profile')
+            }
           }
           
           
-        } catch (error) {
+         catch (error) {
           console.log(error)
         }
       };
@@ -97,7 +105,7 @@ export default function SignupHelper(){
                 </form>
             
         </div>
-        <Errors errors={errors}/>
+        
         </div>
     );
 }

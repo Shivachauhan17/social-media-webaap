@@ -2,11 +2,14 @@ import React,{useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import './css/login.css'
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import Cookie from '../components/Cookie'
 import Header from '../components/Header';
 import axios from 'axios';
 
 
 export default function LoginHelper(){
+    const cookie=Cookie()
     const navigate=useNavigate();
     axios.get('http://localhost:8000/login')
         .then(response=>{
@@ -44,10 +47,32 @@ export default function LoginHelper(){
     const handleSubmit=async(e)=>{
         
         e.preventDefault();
+        try{
             let response=await axios.post('http://localhost:8000/login',loginformdata)
-                console.log(response)
+            response=await response.data;
+            console.log(response)
+          if(response.error){
+            const error=response.error
+            const errorListHTML = `<ul>${error.map((err) => `<li>${err}</li>`).join("")}</ul>`;
+
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+              footer: errorListHTML,
+            })
+            
+          }
+          else{
+            cookie.setUserCookie(response.user)
+            navigate('/profile')
+            }
         
             }
+        catch(error){
+            console.log(error)
+        }
+    }
 
 
     return(
