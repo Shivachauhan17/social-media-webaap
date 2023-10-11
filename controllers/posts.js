@@ -2,9 +2,13 @@ const Post = require("../models/Post");
 const Comment=require("../models/Comment")
 const cloudinary = require("../middleware/cloudinary");
 
+
 module.exports = {
-  getProfile: async (req, res) => {
-    res.json({user:req.user})
+  getProfilePost: async (req, res) => {
+    console.log(req.body)
+    console.log(req.file)
+    const posts=await Post.find({user:req.body.user})
+    res.json({posts:posts})
   },
 
   getFeed: async(req,res)=>{
@@ -18,7 +22,7 @@ module.exports = {
   },
   getPost:async (req,res)=>{
     try{
-        const post=await Post.findById(req.params.id)
+        const post=await Post.find({user:req.params.user})
         const comment=await Comment.find({post:post.id})
         res.render("post.ejs",{post:post,user:req.user,comments:comment})
         console.log(req.user)
@@ -29,21 +33,22 @@ module.exports = {
   },
   createPost:async (req,res)=>{
     try{
+      console.log(req.body)
+      console.log(req.file)
       const result=await cloudinary.uploader.upload(req.file.path)
 
       await Post.create({
-        title:req.body.title,
         image:result.secure_url,
         cloudinaryId:result.public_id,
         caption:req.body.caption,
         likes:0,
-        user:req.user.id,
+        user:req.body.user,
       })
       console.log("post has been added")
-      res.redirect("/profile")
+      return res.json({msg:"post has been added"})
     }
     catch(error){
-      console.log(err)
+      console.log(error)
     }
   },
 

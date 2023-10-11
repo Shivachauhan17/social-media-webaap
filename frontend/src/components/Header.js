@@ -31,7 +31,7 @@ const Header=()=>{
             <div className='headerLinks'>
                 <a class href="/profile">Profile</a>
                 <a href="/feed">Feed</a>
-                <button className='logoutButton' onClick={handleLogout}>Logout</button>
+                {/* <button className='logoutButton' onClick={handleLogout}>Logout</button> */}
 
             </div>
         </div>

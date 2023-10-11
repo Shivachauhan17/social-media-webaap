@@ -7,7 +7,7 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 const passport = require('passport')
 
 router.get("/", homeController.getIndex);
-router.get("/profile", ensureAuth, postsController.getProfile);
+// router.get("/profile", ensureAuth, postsController.getProfile);
 router.get("/feed",postsController.getFeed)
 router.post("/login",authController.postLogin)
 router.get("/logout",authController.getLogout)
