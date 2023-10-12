@@ -15,5 +15,6 @@ router.post("/",postsController.getProfilePost);
 router.post("/createPost",upload.single("myfile"),postsController.createPost)
 router.put("/likePost/:id",postsController.likePost)
 router.delete("/deletePost/:id",postsController.deletePost)
-router.post("/comment/:userName/:postId",postsController.postComment)
+router.post("/comment",postsController.postComment)
+router.post('/getComments',postsController.getComments)
 module.exports=router

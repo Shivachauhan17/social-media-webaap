@@ -4,7 +4,7 @@ import LoginSignup from './pages/signup_login_page'
 import Login from './pages/login'
 import Signup from './pages/signup'
 import  Profile  from "./pages/profile";
-
+import Post from './pages/Post'
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
       <Route path='/signup' element={<Signup />}/>
       <Route path='/profile' element={<Profile/>}/>
       <Route path='/logout' element={<Profile/>}/>
+      <Route path='/getOwnPost' element={<Post/>}/>
     </Routes>
     </BrowserRouter>
     

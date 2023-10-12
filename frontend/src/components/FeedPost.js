@@ -38,13 +38,15 @@ const FeedPost=({userName})=>{
       }, [posts]);
     return(
 
-      <div >
-        <div className="flex justify-center mt-4">
-          <h3>Posts</h3>
-        </div>
-      <ul className="flex gap-x-14 flex-wrap justify-center " style={{ listStyleType: 'none' }}>{
+      <div>
+        <div className="main  flex flex-col justify-center mt-4 items-center">
+          <div className="postheading">
+          <h3 >Posts</h3>
+          </div>
+      <div>
+      <ul className="postlist flex gap-x-14 flex-wrap justify-center " style={{ listStyleType: 'none' }}>{
         posts.map(post=>{
-          const link=`getOwnPost/${post._id}`
+          const link=`getOwnPost/?id=${post._id}`
            return <li 
             className="h-60 mb-5"
            key={post._id}>
@@ -56,6 +58,8 @@ const FeedPost=({userName})=>{
             </li>
         })}
       </ul>
+      </div>
+      </div>
     </div>
        
     )

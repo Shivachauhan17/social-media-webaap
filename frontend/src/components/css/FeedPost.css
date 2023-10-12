@@ -16,3 +16,16 @@
     height: 250px;
     width: 100%;
 }
+.main{
+    /* border: 2px red solid; */
+}
+.postheading{
+    /* border: 2px red solid; */
+    border-bottom: 4px solid gainsboro;
+}
+.postlist{
+    /* border: 2px green solid; */
+    margin-top: -150px;
+    /* min-height: 100vh; */
+    
+}

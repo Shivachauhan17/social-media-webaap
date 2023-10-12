@@ -1,3 +1,4 @@
+const mongoose=require('mongoose')
 const Post = require("../models/Post");
 const Comment=require("../models/Comment")
 const cloudinary = require("../middleware/cloudinary");
@@ -22,13 +23,13 @@ module.exports = {
   },
   getPost:async (req,res)=>{
     try{
-        const post=await Post.find({user:req.params.user})
-        const comment=await Comment.find({post:post.id})
-        res.render("post.ejs",{post:post,user:req.user,comments:comment})
-        console.log(req.user)
+      const postId=new mongoose.Types.ObjectId(req.params.postId)
+        const post=await Post.findOne({_id:postId})
+        return res.json({post:post})
     }
     catch(error){
-        console.log(error)
+      console.log(error)
+        return res.json({msg:error})
     }
   },
   createPost:async (req,res)=>{
@@ -83,16 +84,31 @@ module.exports = {
   },  
   postComment:async (req,res)=>{
     try{
+      console.log(req.body)
       await Comment.create({
         comment:req.body.comment,
-        person:req.params.userName,
-        post:req.params.postId,
+        person:req.body.person,
+        post:req.body.post,
       })
-      res.redirect(`/post/${req.params.postId}`)
+      
+      return res.json({msg:"success"})
+
     }
     catch(err){
       console.log(err)
+      return res.json({msg:err})
     }
+  },
+
+  getComments:async(req,res)=>{
+    try{
+      const comments=await Comment.find({post:req.body.post})
+      return res.json({comments:comments})
+    }
+    catch(err){
+      return res.json({msg:err})
+    }
+
   }
 
 
