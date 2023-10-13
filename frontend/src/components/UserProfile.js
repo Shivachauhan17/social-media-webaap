@@ -45,14 +45,14 @@ const UserProfile=()=>{
                 'Content-Type': 'multipart/form-data', // Set the content type to handle file uploads
               },
           });
-          if(response.status==200){
+          
             console.log(response.status)
             setFormData({
               image: null,
         caption: '',
         user:cookie.getUserCookie()
             })
-          }
+          
           
           // console.log(formData)
         } catch (error) {

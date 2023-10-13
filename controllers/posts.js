@@ -1,6 +1,7 @@
 const mongoose=require('mongoose')
 const Post = require("../models/Post");
 const Comment=require("../models/Comment")
+const Like=require('../models/Like')
 const cloudinary = require("../middleware/cloudinary");
 
 
@@ -55,16 +56,33 @@ module.exports = {
 
   likePost:async(req,res)=>{
     try{
-      await Post.findOneAndUpdate({
-        _id:req.params.id,
-      },
-      {
-        $inc:{likes:1},
-      })
-      console.log("like+1")
-      res.redirect(`/post/${req.params.id}`)
+      const like=await Like.findOne({post_id:req.body.post_id,user:req.body.post_id})
+
+      if(!like){
+
+        Like.create({
+          post_id:req.body.post_id,
+          is_liked:1,
+          user:req.body.post_id,
+        })
+        await Post.findOneAndUpdate({
+          _id:req.body.post_id,
+        },
+        { 
+          $inc:{likes:1},
+        })
+        console.log("like+1")
+        const post=await Post.findOne({_id:req.body.post_id})
+        return res.json({post:post})
+    }
+    console.log('arse')
+    const post=await Post.findOne({_id:req.body.post_id})
+    console.log(post)
+      return res.json({post:post})
+
     }
     catch(error){
+      return res.json({msg:"error"})
       console.log(error)
     }
   },
