@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/Header.css'
+// import './css/Header.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import { useNavigate } from 'react-router-dom';
 import CookieService from './Cookie';
@@ -26,12 +26,12 @@ const Header=()=>{
       });}
 
     return(
-        <div className='header'>
+        <div className='header flex justify-between'>
             <h2>Friends Loop</h2>
-            <div className='headerLinks'>
-                <a class href="/profile">Profile</a>
-                <a href="/feed">Feed</a>
-                {/* <button className='logoutButton' onClick={handleLogout}>Logout</button> */}
+            <div className='border-2 border-black w-1/2 headerLinks flex justify-around'>
+                <a className='border-2 border-black' href="/profile">Profile</a>
+                <a href="/feed" className='border-2 border-black'>Feed</a>
+                <button className='logoutButton border-2 border-black' onClick={handleLogout}>Logout</button>
 
             </div>
         </div>

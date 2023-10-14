@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import Header from '../components/Header'
 import Cookie from '../components/Cookie'
 import {FcLike} from "react-icons/fc";
+import {RiDeleteBinLine} from 'react-icons/ri'
 
 const OwnerPost=()=>{
     const navigate=useNavigate()
@@ -44,6 +45,7 @@ const OwnerPost=()=>{
                 let response=await axios.get(url)
                 let one_post=response.data.post
                 setPost(one_post)
+                console.log(one_post)
             }
             catch(error){
                 Swal.fire('some error occured while fetching the post')
@@ -76,19 +78,24 @@ const OwnerPost=()=>{
         }
     }
 
-    const putLike=()=>{
+    const putLike=async()=>{
          
-            let response=axios.put('http://localhost:8000/post/like',{
+            let response=await axios.put('http://localhost:8000/post/like',{
                 post_id:post._id,
                 is_liked:1,
                 user:cookie.getUserCookie()
             })
             // response=response.data.post
             console.log(response)
-            // setPost(response)
+            setPost(response.data.post)
         }
 
-    
+    const handleDelete=async()=>{
+        await axios.delete(`http://localhost:8000/post/delete?id=${post._id}&c_id=${post.cloudinaryId}`)
+
+        navigate('/profile')
+
+    }
 
     return(
         <div>
@@ -104,6 +111,7 @@ const OwnerPost=()=>{
                     <FcLike className='text-4xl' onClick={putLike}/>
                     <h5 className='mt-2'>{post.likes}</h5>
                     </div>
+                    {cookie.getUserCookie()===post.user && (<RiDeleteBinLine className='text-3xl mt-5 hover:text-4xl' onClick={handleDelete}/>)}
                 </div>
                 <div className='w-2/5'>
                 <h5 className='border-b-4 border-gray-400 w-2/12'>comments</h5>
@@ -112,7 +120,7 @@ const OwnerPost=()=>{
                        
                            
                            comments? (
-                            <ul className='border-2 border-black flex flex-wrap h-4/6 overflow-auto'>
+                            <ul className='flex flex-wrap h-4/6 overflow-auto'>
                                 {
                                 
                                 comments.map(comment=>{

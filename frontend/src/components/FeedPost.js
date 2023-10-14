@@ -1,10 +1,13 @@
 import React,{useState,useEffect} from "react";
+import { useProfileContext } from "../pages/profile";
+
 import {memo} from 'react';
 import axios from "axios";
 import Cookie from './Cookie'
 import styles from './css/FeedPost.css'
 
 const FeedPost=({userName})=>{
+  const {newPost,setNewPosts}=useProfileContext()
     const [posts,setPosts]=useState([])
     // const cookie=Cookie()
     const data={
@@ -26,7 +29,7 @@ const FeedPost=({userName})=>{
         };
       
         fetchPosts();
-      }, []);
+      }, [newPost]);
 
       useEffect(() => {
         // This useEffect will run whenever `posts` changes.
@@ -35,7 +38,7 @@ const FeedPost=({userName})=>{
         }
         returnCompo()
 
-      }, [posts]);
+      }, []);
     return(
 
       <div>
