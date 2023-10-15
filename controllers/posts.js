@@ -12,20 +12,26 @@ module.exports = {
     const posts=await Post.find({user:req.body.user})
     res.json({posts:posts})
   },
+ 
 
   getFeed: async(req,res)=>{
     try{
-        const posts=await Post.find().sort({ createdAt:"desc"}).lean()
-        res.render("feed.ejs",{posts:posts})
+        const posts=await Post.find().sort()
+        console.log("in get feed")
+        return res.json({posts:posts})
     }
     catch(error){
         console.log(error)
+        return res.json({msg:"error"})
     }
   },
-  getPost:async (req,res)=>{
+
+   getPost:async (req,res)=>{
     try{
       const postId=new mongoose.Types.ObjectId(req.params.postId)
+      console.log(req.params.postId)
         const post=await Post.findOne({_id:postId})
+        console.log(post)
         return res.json({post:post})
     }
     catch(error){
@@ -33,6 +39,7 @@ module.exports = {
         return res.json({msg:error})
     }
   },
+  
   createPost:async (req,res)=>{
     try{
       console.log(req.body)

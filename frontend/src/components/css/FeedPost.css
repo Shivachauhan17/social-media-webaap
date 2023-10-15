@@ -19,7 +19,7 @@
 .main{
     /* border: 2px red solid; */
 }
-.postheading{
+.postheading>h3{
     /* border: 2px red solid; */
     border-bottom: 4px solid gainsboro;
 }

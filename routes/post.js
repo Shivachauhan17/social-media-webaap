@@ -9,9 +9,10 @@ const upload=multer({dest:'uploads/'});
 
 
 // router.get("/:id", ensureAuth, postsController.getPost);
+router.get("/getFeed",postsController.getFeed)
+
 router.get("/:postId",postsController.getPost);
 router.post("/",postsController.getProfilePost);
-
 router.post("/createPost",upload.single("myfile"),postsController.createPost)
 router.put("/like",postsController.likePost)
 router.delete("/delete",postsController.deletePost)

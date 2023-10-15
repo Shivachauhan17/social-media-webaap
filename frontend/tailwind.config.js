@@ -5,7 +5,11 @@ module.exports = {
 
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'Cedarville-Cursive': ['Cedarville Cursive', 'cursive'],
+      },
+    },
   },
   colors:{
     'default':"#86efac",

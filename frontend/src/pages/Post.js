@@ -15,6 +15,7 @@ const OwnerPost=()=>{
     const postTitle=`${user}'s post`
     const [searchParams]=useSearchParams()
     const id=searchParams.get('id')
+    console.log("id:",id)
     const [newComment,setNewComment]=useState('')
     const [comments,setComments]=useState([]) 
     const [post,setPost]=useState({})
@@ -43,9 +44,10 @@ const OwnerPost=()=>{
             try{
                 const url=`http://localhost:8000/post/${id}`
                 let response=await axios.get(url)
+                console.log(response)
                 let one_post=response.data.post
                 setPost(one_post)
-                console.log(one_post)
+                
             }
             catch(error){
                 Swal.fire('some error occured while fetching the post')

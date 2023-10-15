@@ -6,6 +6,13 @@ import './css/UserProfile.css'
 import { useProfileContext } from "../pages/profile";
 import {AiFillMail,AiOutlineArrowDown} from 'react-icons/ai'
 
+// import { ImProfile } from 'react-icons/im';
+// import { MdSportsBaseball } from 'react-icons/gi';
+// import { LiaBirthdayCakeSolid } from 'react-icons/lia';
+// import { BsFillBalloonHeartFill } from 'react-icons/bs';
+// import { PiPlusCircleBold } from 'react-icons/lu';
+
+
 
 const UserProfile=()=>{
   const {newPost,setNewPost}=useProfileContext()
@@ -75,34 +82,59 @@ const UserProfile=()=>{
                 <h3>{cookie.getUserCookie()}</h3>
                 
             </div>
-            <div className="postForm" >
-                <form onSubmit={handleSubmit} encType="multipart/form-data">
-                    <div className="flex flex-col">  
-                      <div className="chooseImgDiv">
-                        
-                        <div className="flex gap-x-4">
-                          <AiOutlineArrowDown/>
-                          <label htmlFor="image">choose a image</label>
-                          </div>
-                          <input id="image" type="file" accept="image/*" name="myfile" onChange={handleImageChange}/>
-                          
-                      </div>
 
-                      <div className="captionDiv mt-2.5">
-                        <div className="flex gap-x-4">
-                          <AiFillMail/>
-                          <label htmlFor="caption">write caption</label>
-                        </div>
-                        <div>
-                          <input placeholder="caption" value={formData.caption} id="caption" type="text" onChange={handleCaptionChange}/>
-                          </div>
-                      </div>
-                      </div>
-                    <div className="flex justify-center">
-                    <button  type="submit" onSubmit={handleSubmit}>Post</button>
-                    </div>
-                </form>
+            <div>
+              {/* <div>
+                <PiPlusCircleBold/>
+              </div>
+              <div>
+                <ImProfile/>
+              </div>
+              <div>
+                <LiaBirthdayCakeSolid/>
+              </div>
+              <div>
+                <MdSportsBaseball/>
+              </div>
+              <div>
+                <BsFillBalloonHeartFill/>
+              </div> */}
+
             </div>
+
+            <div>
+              <div>
+              <h4>Post Something new</h4>
+              </div>
+              <div className="postForm" >
+                  <form onSubmit={handleSubmit} encType="multipart/form-data">
+                      <div className="flex flex-col">  
+                        <div className="chooseImgDiv">
+                          
+                          <div className="flex gap-x-4">
+                            <AiOutlineArrowDown/>
+                            <label htmlFor="image">choose a image</label>
+                            </div>
+                            <input id="image" type="file" accept="image/*" name="myfile" onChange={handleImageChange}/>
+                            
+                        </div>
+
+                        <div className="captionDiv mt-2.5">
+                          <div className="flex gap-x-4">
+                            <AiFillMail/>
+                            <label htmlFor="caption">write caption</label>
+                          </div>
+                          <div>
+                            <input placeholder="caption" value={formData.caption} id="caption" type="text" onChange={handleCaptionChange}/>
+                            </div>
+                        </div>
+                        </div>
+                      <div className="flex justify-center">
+                      <button  type="submit" onSubmit={handleSubmit}>Post</button>
+                      </div>
+                  </form>
+              </div>
+              </div>
         </div>
     )
 

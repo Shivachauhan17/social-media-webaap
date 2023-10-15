@@ -26,12 +26,13 @@ const Header=()=>{
       });}
 
     return(
-        <div className='header flex justify-between'>
-            <h2>Friends Loop</h2>
-            <div className='border-2 border-black w-1/2 headerLinks flex justify-around'>
-                <a className='border-2 border-black' href="/profile">Profile</a>
-                <a href="/feed" className='border-2 border-black'>Feed</a>
-                <button className='logoutButton border-2 border-black' onClick={handleLogout}>Logout</button>
+        <div className='header flex justify-between shadow-md'>
+            <h2 className='font-Cedarville-Cursive'>Friends Loop</h2>
+            <div className='w-1/2 headerLinks flex justify-around'>
+                <a className='bg-gray-100 rounded-3xl h-3/4 mt-1 pt-1 text-black font-extrabold px-2.5 hover:shadow-md' href="/profile">Profile</a>
+                <a href="/feed" className='bg-gray-100 rounded-3xl h-3/4 mt-1 pt-1 text-black font-extrabold px-2.5 hover:shadow-md' >Feed</a>
+                <button className='logoutButton border-3 border-black rounded-lg text-black font-extrabold px-2.5 
+                hover:shadow-md' onClick={handleLogout}>Logout</button>
 
             </div>
         </div>
