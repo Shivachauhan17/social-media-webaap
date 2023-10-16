@@ -2,7 +2,6 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
-
   ],
   theme: {
     extend: {
@@ -10,9 +9,6 @@ module.exports = {
         'Cedarville-Cursive': ['Cedarville Cursive', 'cursive'],
       },
     },
-  },
-  colors:{
-    'default':"#86efac",
   },
   plugins: [],
 }
