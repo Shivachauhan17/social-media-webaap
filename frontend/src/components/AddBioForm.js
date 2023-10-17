@@ -4,7 +4,7 @@ import Cookie from '../components/Cookie'
 import Swal from 'sweetalert2';
 
 
-const AddBioForm=()=>{
+const AddBioForm=({editBioProp,setEditBio})=>{
     const cookie=Cookie()
     const[pop,setPop]=useState(false)
     const [formData,setFormData]=useState({
@@ -40,10 +40,12 @@ const AddBioForm=()=>{
         })
     }
 
-    const handleSubmit=()=>{
+    const handleSubmit=async (e)=>{
         try{
-            // axios.post()
-            console.log(formData)
+            e.preventDefault()
+            const response=await axios.post('http://localhost:8000/post/addBio',formData)
+            console.log(response)
+            setEditBio(!editBioProp)
         }
         catch(err){
             Swal.fire('while updating bio something gone wrong')

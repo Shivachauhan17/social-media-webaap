@@ -23,7 +23,15 @@ const UserProfile=()=>{
 
   useEffect(()=>{
     cookie.setUserCookie('Shiva')
-  })
+    const fetchBio=async()=>{
+      const url=`http://localhost:8000/post/getBio/${cookie.getUserCookie()}`
+      let response=await axios.get(url)
+      console.log(response.data.bio)
+      setBio(response.data.bio)
+    }
+    fetchBio()
+
+  },[])
     const [formData, setFormData] = useState({
         image: null,
         caption: '',
@@ -75,9 +83,9 @@ const UserProfile=()=>{
       };
 
     return(
-        <div className="UserProfile">
+        <div className="UserProfile relative top-12">
             {
-              editBio&&(<AddBioForm/>)
+              editBio&&(<AddBioForm editBioProp={editBio} setEditBio={setEditBio} />)
             }
             <div className="flex w-2/4 gap-x-10">
               <div className="profileSec">
@@ -94,22 +102,22 @@ const UserProfile=()=>{
                 <div className=" flex gap-x-2">
                   <ImProfile className="text-2xl"/>
                   <h5>Profession</h5>
-                  <p>giving</p>
+                  <p>{bio.profession}</p>
                 </div>
                 <div className=" flex gap-x-2">
                   <LiaBirthdayCakeSolid className="text-2xl"/>
                   <h5>BirthDay</h5>
-                  <p>giving</p>
+                  <p>{bio.birthday}</p>
                 </div>
                 <div className=" flex gap-x-2">
                   <BiTennisBall className="text-2xl"/>
                   <h5>Hobby</h5>
-                  <p>giving</p>
+                  <p>{bio.hobby}</p>
                 </div>
                 <div className=" flex gap-x-2">
                   <BsFillBalloonHeartFill className="text-2xl"/>
                   <h5>Love to do</h5>
-                  <p>giving</p>
+                  <p>{bio.love_to_do}</p>
                 </div>
                 <div className="mt-4 flex gap-x-2 justify-center items-center">
                   <BiSolidPencil className="text-2xl" onClick={()=>setEditBio(!editBio)}/>

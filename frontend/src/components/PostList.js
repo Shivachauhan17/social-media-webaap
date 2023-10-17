@@ -5,7 +5,7 @@ import {FcLike} from "react-icons/fc";
 const Postlist=({posts})=>{
         console.log(posts)
     return(
-    <div>
+    <div className='relative top-14'>
         <div className="flex flex-col gap-x-9 ">
             <div className="postheading flex justify-center">
                 <h3 >Posts</h3>

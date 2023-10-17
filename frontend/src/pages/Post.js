@@ -102,7 +102,7 @@ const OwnerPost=()=>{
     return(
         <div>
             <Header/>
-            <div className=' flex flex-wrap justify-center mt-10'>
+            <div className=' flex flex-wrap justify-center relative top-14'>
                 <div className='w-2/4'>
                     <h3 className='border-b-4 border-gray-400 w-2/6 mb-5'>{postTitle}</h3>
                     <img 

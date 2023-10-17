@@ -14,7 +14,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-      <Route path='/' element={< AddBioForm/>}/>
+      <Route path='/' element={<LoginSignup/>}/>
       <Route path='/login' element={<Login />}/>
       <Route path='/signup' element={<Signup />}/>
       <Route path='/profile' element={<Profile/>}/>

@@ -2,6 +2,7 @@ const mongoose=require('mongoose')
 const Post = require("../models/Post");
 const Comment=require("../models/Comment")
 const Like=require('../models/Like')
+const Bio=require('../models/Bio')
 const cloudinary = require("../middleware/cloudinary");
 
 
@@ -37,6 +38,17 @@ module.exports = {
     catch(error){
       console.log(error)
         return res.json({msg:error})
+    }
+  },
+
+  getBio:async(req,res)=>{
+    try{
+      const response=await Bio.findOne({username:req.params.username})
+      return res.json({bio:response})
+    }
+    catch(error){
+      console.log(error)
+      return res.json({msg:"error"})
     }
   },
   
@@ -131,6 +143,24 @@ module.exports = {
     }
     catch(err){
       return res.json({msg:err})
+    }
+
+  },
+  addBio:async(req,res)=>{
+    try{
+      const newBio= new Bio({
+        username:req.body.username,
+        profession:req.body.profession,
+        hobby:req.body.hobby,
+        birthday:req.body.birthday,
+        love_to_do:req.body.loveToDo
+      })
+      newBio.save()
+      return res.json({msg:"success"})
+    }
+    catch(error){
+      console.log(error)
+      return res.json({msg:"error"})
     }
 
   }
