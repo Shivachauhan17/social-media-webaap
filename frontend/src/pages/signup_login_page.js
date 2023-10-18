@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import './css/signup_login_page.css'
 import Cookie from '../components/Cookie'
+import logo from 'C:/Users/Hp/Desktop/social-network-webaap/frontend/src/img/icon.png'
 import axios from "axios";
 
 const LoginSignup= ()=>{
@@ -22,7 +23,7 @@ const LoginSignup= ()=>{
             return(
         <div>
             <div>
-                <img src="../../public/img/logo.avif" alt="logo"></img>
+                <img src={logo} className='h-12'></img>
             </div>
             <div className='wrapper'>
                 <h2 className="font-bold text-2xl text-black outline-4">Friends loop</h2>

@@ -5,6 +5,7 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 import Header from '../components/Header'
 import Cookie from '../components/Cookie'
+import CommentBox from '../components/CommentBox'
 import {FcLike} from "react-icons/fc";
 import {RiDeleteBinLine} from 'react-icons/ri'
 
@@ -27,18 +28,18 @@ const OwnerPost=()=>{
     })
 
     useEffect(()=>{
-        const getComments=async()=>{
-            try{
-            let gotComments=await axios.post('http://localhost:8000/post/getComments',{post:id})
-            gotComments=gotComments.data.comments
-            setComments(gotComments)
+        // const getComments=async()=>{
+        //     try{
+        //     let gotComments=await axios.post('http://localhost:8000/post/getComments',{post:id})
+        //     gotComments=gotComments.data.comments
+        //     setComments(gotComments)
             
          
-        }
-        catch(err){
-            Swal.fire('some error occured while fetching comments')
-        }
-        }
+        // }
+        // catch(err){
+        //     Swal.fire('some error occured while fetching comments')
+        // }
+        // }
 
         const getPost=async()=>{
             try{
@@ -54,7 +55,7 @@ const OwnerPost=()=>{
             }
         }
         getPost()
-        getComments()
+        // getComments()
         
     },[newComment])
 
@@ -65,20 +66,20 @@ const OwnerPost=()=>{
         })
     }
 
-    const handleSubmit=async(e)=>{
-        e.preventDefault()
-        try{
-        axios.post('http://localhost:8000/post/comment',formData)
-        setNewComment(formData.comment)
-        setFormData({
-            ...formData,
-            comment:''
-        })
-        }
-        catch(err){
-            Swal.fire('something gone wrong')
-        }
-    }
+        // const handleSubmit=async(e)=>{
+        //     e.preventDefault()
+        //     try{
+        //     axios.post('http://localhost:8000/post/comment',formData)
+        //     setNewComment(formData.comment)
+        //     setFormData({
+        //         ...formData,
+        //         comment:''
+        //     })
+        //     }
+        //     catch(err){
+        //         Swal.fire('something gone wrong')
+        //     }
+        // }
 
     const putLike=async()=>{
          
@@ -115,7 +116,7 @@ const OwnerPost=()=>{
                     </div>
                     {cookie.getUserCookie()===post.user && (<RiDeleteBinLine className='text-3xl mt-5 hover:text-4xl' onClick={handleDelete}/>)}
                 </div>
-                <div className='w-2/5'>
+                {/* <div className='w-2/5'>
                 <h5 className='border-b-4 border-gray-400 w-2/12'>comments</h5>
                 <div className=' h-4/6 shadow-md rounded-2xl'>
                     {
@@ -153,7 +154,8 @@ const OwnerPost=()=>{
                         type='submit'>comment</button> 
                     </form>
                 </div>
-                </div>
+                </div> */}
+            <CommentBox postId={id}/>
             </div>
         </div>
     )

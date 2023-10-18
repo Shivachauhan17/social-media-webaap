@@ -148,15 +148,34 @@ module.exports = {
   },
   addBio:async(req,res)=>{
     try{
-      const newBio= new Bio({
-        username:req.body.username,
-        profession:req.body.profession,
-        hobby:req.body.hobby,
-        birthday:req.body.birthday,
-        love_to_do:req.body.loveToDo
-      })
-      newBio.save()
-      return res.json({msg:"success"})
+      
+      const username = req.body.username;
+
+        // Check if a document with the given username exists
+        const existingBio = await Bio.findOne({ username });
+
+        if (existingBio) {
+            // Update the existing document
+            existingBio.profession = req.body.profession;
+            existingBio.hobby = req.body.hobby;
+            existingBio.birthday = req.body.birthday;
+            existingBio.love_to_do = req.body.loveToDo;
+
+            await existingBio.save();
+        } else {
+            // Create a new document if it doesn't exist
+            const newBio = new Bio({
+                username: req.body.username,
+                profession: req.body.profession,
+                hobby: req.body.hobby,
+                birthday: req.body.birthday,
+                love_to_do: req.body.loveToDo,
+            });
+
+            await newBio.save();
+        }
+
+        return res.json({ msg: "success" });
     }
     catch(error){
       console.log(error)

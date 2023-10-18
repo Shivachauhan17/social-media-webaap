@@ -4,7 +4,7 @@ import Cookie from '../components/Cookie'
 import Swal from 'sweetalert2';
 
 
-const AddBioForm=({editBioProp,setEditBio})=>{
+const AddBioForm=()=>{
     const cookie=Cookie()
     const[pop,setPop]=useState(false)
     const [formData,setFormData]=useState({
@@ -45,15 +45,15 @@ const AddBioForm=({editBioProp,setEditBio})=>{
             e.preventDefault()
             const response=await axios.post('http://localhost:8000/post/addBio',formData)
             console.log(response)
-            setEditBio(!editBioProp)
         }
         catch(err){
+            console.log(err)
             Swal.fire('while updating bio something gone wrong')
         }
     }
 
     return(
-        <div className='bg-white  w-1/4 h-80 mt-64 left-80 absolute rounded-3xl'>
+        <div className='bg-white  w-1/4 h-80 mt-64 left-80 absolute rounded-3xl z-50'>
             <form className='w-full flex grow flex-col p-6  bg-white h-full justify-around rounded-3xl shadow-lg' onSubmit={handleSubmit}>
                 <div className='flex justify-around'>
                     <label htmlFor='profession' className='font-bold '>Profession</label>
