@@ -7,14 +7,14 @@ import  Profile  from "./pages/profile";
 import Post from './pages/Post'
 import Feed from "./pages/Feed";
 import AddBioForm from "./components/AddBioForm";
-
+import SearchBar from './components/SearchBar'
 
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-      <Route path='/' element={<LoginSignup/>}/>
+      <Route path='/' element={<SearchBar/>}/>
       <Route path='/login' element={<Login />}/>
       <Route path='/signup' element={<Signup />}/>
       <Route path='/profile' element={<Profile/>}/>
