@@ -10,21 +10,22 @@ const SearchBar=()=>{
     }
 
     const handleSubmit=()=>{
-        navigate(`/publicProfile/${input}`)
+        navigate(`/profile/${input}`)
     }
 
     return(
         <div>
-            <div className="h-12 ">
+            <div className="h-10 rounded-3xl">
             
                 <form onSubmit={handleSubmit} 
-                className="flex h-12 bg-gray-100 rounded-2xl">
+                className="flex h-10 bg-gray-100 rounded-3xl">
                     <input 
                     placeholder="search someones profile"
-                    className=" border-2 border-gray-100 bg-gray-100 rounded-l-2xl" 
+                    className=" border-2 border-gray-100 bg-gray-100 rounded-l-3xl outline-none pl-2.5" 
                     value={input} 
                     onChange={handleInputChange}/>
-                    <button type="submit" className="bg-gray-100">search</button>
+                    <button type="submit" 
+                    className="bg-gray-100 font-bold pl-2.5 border-l-2 border-black rounded-r-3xl pr-2.5">search</button>
                 </form> 
             </div>
         </div>

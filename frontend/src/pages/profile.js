@@ -10,7 +10,7 @@ import './css/Profile.css'
 // import Header from './header'
 
 export const ProfileContext=createContext();
-console.log(ProfileContext.Provider)
+
 
 export const useProfileContext=()=>useContext(ProfileContext);
 

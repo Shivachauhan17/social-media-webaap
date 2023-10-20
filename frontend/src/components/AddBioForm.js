@@ -44,10 +44,10 @@ const AddBioForm=()=>{
         try{
             e.preventDefault()
             const response=await axios.post('http://localhost:8000/post/addBio',formData)
-            console.log(response)
+            
         }
         catch(err){
-            console.log(err)
+            
             Swal.fire('while updating bio something gone wrong')
         }
     }

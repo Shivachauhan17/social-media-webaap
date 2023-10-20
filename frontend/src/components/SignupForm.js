@@ -41,7 +41,7 @@ export default function SignupHelper(){
         try {
           let response = await axios.post('http://localhost:8000/signup',formdata)
           response=await response.data;
-          console.log(response)
+          
           if(response.error){
             const error=response.error
             const errorListHTML = `<ul>${error.map((err) => `<li>${err}</li>`).join("")}</ul>`;
@@ -55,7 +55,7 @@ export default function SignupHelper(){
             
           }
           else{
-            cookie.setUserCookie(response.user)
+            cookie.setUserCookie(response.data.user)
             navigate('/profile')
             }
           }

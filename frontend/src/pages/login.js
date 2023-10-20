@@ -13,7 +13,7 @@ export default function LoginHelper(){
     const navigate=useNavigate();
     axios.get('http://localhost:8000/login')
         .then(response=>{
-            console.log("user:",response.user)
+            
             if(response.data.user){
                 
                 navigate(`/profile/${response.user}`)
@@ -50,7 +50,7 @@ export default function LoginHelper(){
         try{
             let response=await axios.post('http://localhost:8000/login',loginformdata)
             response=await response.data;
-            console.log(response)
+            
           if(response.error){
             const error=response.error
             const errorListHTML = `<ul>${error.map((err) => `<li>${err}</li>`).join("")}</ul>`;

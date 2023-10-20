@@ -3,7 +3,7 @@ import {FcLike} from "react-icons/fc";
 
 
 const Postlist=({posts})=>{
-        console.log(posts)
+        
     return(
     <div className='relative top-14'>
         <div className="flex flex-col gap-x-9 ">

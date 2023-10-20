@@ -21,13 +21,11 @@ const FeedPost=({userName})=>{
         const fetchPosts = async () => {
           try {
             const response = await axios.post('http://localhost:8000/post/', data);
-            console.log(response.data); // Make sure the response data is what you expect
-            
-            console.log("posts:",response.data.posts)
+           
             const postArray=response.data.posts
             setPosts(postArray)
           } catch (error) {
-            console.error(error);
+            
           }
         };
       
@@ -37,7 +35,7 @@ const FeedPost=({userName})=>{
       useEffect(() => {
         // This useEffect will run whenever `posts` changes.
         const returnCompo=()=>{
-          console.log(posts)
+          
         }
         returnCompo()
 

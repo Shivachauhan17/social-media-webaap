@@ -11,8 +11,7 @@ const Feed=()=>{
     useEffect(()=>{
         const fetchAllPosts=async()=>{
             let response=await axios.get('http://localhost:8000/post/getFeed')
-            // response=response.data.posts
-            console.log("response:",response)
+            
 
             setPosts(response.data.posts)
         }

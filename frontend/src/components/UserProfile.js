@@ -22,11 +22,11 @@ const UserProfile=()=>{
   const cookie=Cookie()
 
   useEffect(()=>{
-    cookie.setUserCookie('Shiva')
+    
     const fetchBio=async()=>{
       const url=`http://localhost:8000/post/getBio/${cookie.getUserCookie()}`
       let response=await axios.get(url)
-      console.log(response.data.bio)
+      
       setBio(response.data.bio)
     }
     fetchBio()
@@ -65,7 +65,7 @@ const UserProfile=()=>{
               },
           });
           
-            console.log(response.status)
+            
             setFormData({
               image: null,
         caption: '',
@@ -73,7 +73,7 @@ const UserProfile=()=>{
             })
           
           setNewPost(newPost=>!newPost)
-          // console.log(formData)
+          
         } catch (error) {
           console.error(error);
         }

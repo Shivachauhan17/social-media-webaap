@@ -31,7 +31,7 @@ const CommentBox=({postId})=>{
     const handleSubmit=async(e)=>{
         e.preventDefault()
         try{
-        axios.post('http://localhost:8000/post/comment',formData)
+        await axios.post('http://localhost:8000/post/comment',formData)
         setNewComment(!newComment)
         
         setFormData({
