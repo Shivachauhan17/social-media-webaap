@@ -3,7 +3,9 @@ import { useParams } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import Cookie from '../components/Cookie'
 import Header from "../components/Header";
-import UserProfile from '../components/UserProfile'
+import Bio_Profile from '../components/Bio_Profile'
+import AddBioIcon from '../components/AddBioIcon'
+import PostForm from '../components/PostForm'
 import FeedPost from "../components/FeedPost";
 import './css/Profile.css'
 
@@ -27,7 +29,16 @@ export default function Profile(){
     return(
         <ProfileContext.Provider value={{newPost,setNewPost}}>
             <Header/>
-            <UserProfile username={userName} profile_url={"app"} newPost={newPost} setNewPost={setNewPost}/>
+            <div className="flex justify-around mt-20">
+                <div>
+                    <Bio_Profile/>
+                    <div className="flex justify-end">
+                        <AddBioIcon/>
+                    </div>
+                </div>
+                <PostForm/>    
+
+            </div>
             <FeedPost userName={userName} newPost={newPost} setNewPost={setNewPost}/>
             
         </ProfileContext.Provider>

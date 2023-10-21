@@ -55,7 +55,7 @@ export default function SignupHelper(){
             
           }
           else{
-            cookie.setUserCookie(response.data.user)
+            cookie.setUserCookie(response.user)
             navigate('/profile')
             }
           }

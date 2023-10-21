@@ -10,7 +10,7 @@ const SearchBar=()=>{
     }
 
     const handleSubmit=()=>{
-        navigate(`/profile/${input}`)
+        navigate(`/publicProfile/?userName=${input}`)
     }
 
     return(
@@ -25,7 +25,7 @@ const SearchBar=()=>{
                     value={input} 
                     onChange={handleInputChange}/>
                     <button type="submit" 
-                    className="bg-gray-100 font-bold pl-2.5 border-l-2 border-black rounded-r-3xl pr-2.5">search</button>
+                    className="bg-gray-100 font-bold pl-2.5 border-l-2 border-gray-300 rounded-r-3xl pr-2.5">search</button>
                 </form> 
             </div>
         </div>
