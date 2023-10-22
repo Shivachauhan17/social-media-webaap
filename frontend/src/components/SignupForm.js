@@ -44,8 +44,8 @@ export default function SignupHelper(){
           
           if(response.error){
             const error=response.error
-            const errorListHTML = `<ul>${error.map((err) => `<li>${err}</li>`).join("")}</ul>`;
-
+            const errorListHTML = `<ul>${error.map((err) => `<li>${err.msg}</li>`).join("")}</ul>`;
+            console.log(error)
             Swal.fire({
               icon: 'error',
               title: 'Oops...',

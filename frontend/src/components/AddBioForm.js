@@ -53,45 +53,47 @@ const AddBioForm=()=>{
     }
 
     return(
-        <div className='bg-white  w-1/4 h-80 mt-64 left-80 absolute rounded-3xl z-50'>
-            <form className='w-full flex grow flex-col p-6  bg-white h-full justify-around rounded-3xl shadow-lg' onSubmit={handleSubmit}>
-                <div className='flex justify-around'>
-                    <label htmlFor='profession' className='font-bold '>Profession</label>
-                    <input id="profession" 
-                    placeholder='about your profession'
-                    className='text-center h-8 rounded-md border-2 border-gray-200'
-                    value={formData.profession}
-                    onChange={handleProfession}/>
-                </div>
-                <div className='flex justify-around'>
-                    <label htmlFor='hobby' className='font-bold'>Hobbies</label>
-                    <input id="hobby" 
-                    placeholder='about your hobby'
-                    className='text-center h-8 rounded-md border-gray-200'
-                    value={formData.hobby}
-                    onChange={handleHobby}/>
-                </div>
-                <div className='flex justify-around'>
-                    <label htmlFor='birthday' className='font-bold'>BirthDay</label>
-                    <input id="birthday" 
-                    placeholder='about your birthday'
-                    className='text-center h-8 rounded-md border-gray-200'
-                    value={formData.birthday}
-                    onChange={handleBirthday}/>
-                </div>
-                <div className='flex justify-around'>
-                    <label htmlFor='loveToDo' className='font-bold'>Love doing..</label>
-                    <input id="loveToDo" 
-                    placeholder='what you love to do'
-                    className='text-center h-8 rounded-md border-gray-200'
-                    value={formData.loveToDo}
-                    onChange={handleLoveToDo}/>
-                </div>
-                <div className='flex justify-around'>
-                    <button type='submit' className='font-bold border-4 border-gray-400 p-0.5 hover:bg-gray-200'>Change</button>
-                </div>
-            </form>
-            
+        <div>
+            <div className=' bg-white  w-1/4 h-80 right-1/3 absolute rounded-3xl z-50'>
+                <form className='w-full flex grow flex-col p-6  bg-white h-full justify-around rounded-3xl shadow-lg' onSubmit={handleSubmit}>
+                    <div className='flex justify-around'>
+                        <label htmlFor='profession' className='font-bold '>Profession</label>
+                        <input id="profession" 
+                        placeholder='about your profession'
+                        className='text-center h-8 rounded-md border-2 border-gray-200'
+                        value={formData.profession}
+                        onChange={handleProfession}/>
+                    </div>
+                    <div className='flex justify-around'>
+                        <label htmlFor='hobby' className='font-bold'>Hobbies</label>
+                        <input id="hobby" 
+                        placeholder='about your hobby'
+                        className='text-center h-8 rounded-md border-gray-200'
+                        value={formData.hobby}
+                        onChange={handleHobby}/>
+                    </div>
+                    <div className='flex justify-around'>
+                        <label htmlFor='birthday' className='font-bold'>BirthDay</label>
+                        <input id="birthday" 
+                        placeholder='about your birthday'
+                        className='text-center h-8 rounded-md border-gray-200'
+                        value={formData.birthday}
+                        onChange={handleBirthday}/>
+                    </div>
+                    <div className='flex justify-around'>
+                        <label htmlFor='loveToDo' className='font-bold'>Love doing..</label>
+                        <input id="loveToDo" 
+                        placeholder='what you love to do'
+                        className='text-center h-8 rounded-md border-gray-200'
+                        value={formData.loveToDo}
+                        onChange={handleLoveToDo}/>
+                    </div>
+                    <div className='flex justify-around'>
+                        <button type='submit' className='font-bold border-4 border-gray-400 p-0.5 hover:bg-gray-200'>Change</button>
+                    </div>
+                </form>
+                
+            </div>
         </div>
     )
 

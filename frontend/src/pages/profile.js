@@ -30,8 +30,8 @@ export default function Profile(){
         <ProfileContext.Provider value={{newPost,setNewPost}}>
             <Header/>
             <div className="flex justify-around mt-20">
-                <div>
-                    <Bio_Profile/>
+                <div >
+                    <Bio_Profile userName={cookie.getUserCookie()}/>
                     <div className="flex justify-end">
                         <AddBioIcon/>
                     </div>

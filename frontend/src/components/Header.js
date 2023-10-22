@@ -12,7 +12,6 @@ const Header=()=>{
     const navigate=useNavigate()
     const cookie=CookieService()
     const handleLogout=()=>{
-      console.log("directing")
       Swal.fire({
         icon: 'warning',
         title: 'Logout',
@@ -23,7 +22,7 @@ const Header=()=>{
       }).then((result) => {
         // Check if the user confirmed the logout
         if (result.isConfirmed) {
-          cookie.removeUserCookie()
+           cookie.setUserCookie(null)
             navigate('/')
         }
       })

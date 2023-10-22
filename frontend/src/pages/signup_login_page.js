@@ -14,8 +14,8 @@ const LoginSignup= ()=>{
           if(cookieData.getUserCookie()){
             
             const user=cookieData.getUserCookie();
-
-            navigate('/profile');
+            if(user!==null){
+            navigate('/profile');}
           }
         },[])
 

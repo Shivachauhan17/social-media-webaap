@@ -10,13 +10,13 @@ import { BiTennisBall } from 'react-icons/bi';
 import { LiaBirthdayCakeSolid } from 'react-icons/lia';
 import { BsFillBalloonHeartFill } from 'react-icons/bs';
 
-const Bio_Profile=()=>{
+const Bio_Profile=({userName})=>{
     const [bio,setBio]=useState({})
   const cookie=Cookie()
     useEffect(()=>{
     
         const fetchBio=async()=>{
-          const url=`http://localhost:8000/post/getBio/${cookie.getUserCookie()}`
+          const url=`http://localhost:8000/post/getBio/${userName}`
           let response=await axios.get(url)
           
           setBio(response.data.bio)
@@ -26,13 +26,13 @@ const Bio_Profile=()=>{
       },[])
 
     return(<div>
-        {bio ? <div className="flex w-2/4 gap-x-10">
+        {bio ? <div className="flex gap-x-10">
               <div className="profileSec">
                   <img 
                   className="shadow-lg"
                   src='https://imgs.search.brave.com/AMJIF4luRDh-XqO7A9Nmb2O84SqbuDIrugtKeEL5gx4/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG4u/ZmFuZG9td2lyZS5j/b20vd3AtY29udGVu/dC91cGxvYWRzLzIw/MjMvMDcvMzAwOTE1/NDYvSU1HXzAzMjku/anBlZw'/>
               
-                  <h3>{cookie.getUserCookie()}</h3>
+                  <h3>{userName}</h3>
                   
               </div>
 
@@ -60,7 +60,7 @@ const Bio_Profile=()=>{
                 </div>
 
               </div>
-            </div>:<div className="profileSec">
+            </div>:<div className="profileSec ">
                   <img 
                   className="shadow-lg"
                   src='https://imgs.search.brave.com/AMJIF4luRDh-XqO7A9Nmb2O84SqbuDIrugtKeEL5gx4/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG4u/ZmFuZG9td2lyZS5j/b20vd3AtY29udGVu/dC91cGxvYWRzLzIw/MjMvMDcvMzAwOTE1/NDYvSU1HXzAzMjku/anBlZw'/>
