@@ -35,7 +35,7 @@ const FeedPostForPublic=({userName})=>{
 
       }, []);
     return(
-    <PostList posts={posts}/>
+    <PostList posts={posts} userName={userName}/>
     )
 }
 

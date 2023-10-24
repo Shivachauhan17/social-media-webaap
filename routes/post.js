@@ -13,6 +13,7 @@ router.get("/getFeed",postsController.getFeed)
 
 router.get("/:postId",postsController.getPost);
 router.get('/getBio/:username',postsController.getBio)
+router.get('/getStats/:userName',postsController.getStats)
 router.post("/",postsController.getProfilePost);
 router.post("/createPost",upload.single("myfile"),postsController.createPost)
 router.put("/like",postsController.likePost)

@@ -13,16 +13,17 @@ const OwnerPost=()=>{
     const navigate=useNavigate()
     const cookie=Cookie()
     const user=cookie.getUserCookie()
-    const postTitle=`${user}'s post`
+    console.log(user)
     const [searchParams]=useSearchParams()
     const id=searchParams.get('id')
-    
+    const userName=searchParams.get('userName')
+    const postTitle=`${userName}'s post`
     const [newComment,setNewComment]=useState('')
     const [comments,setComments]=useState([]) 
     const [post,setPost]=useState({})
 
     const [formData,setFormData]=useState({
-        person:cookie.getUserCookie(),
+        person:userName,
         comment:"",
         post:id
     })

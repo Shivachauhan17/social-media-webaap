@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import {FcLike} from "react-icons/fc";
 
 
-const Postlist=({posts})=>{
+const Postlist=({posts,userName})=>{
         
     return(
     <div className='relative top-14'>
@@ -14,7 +14,7 @@ const Postlist=({posts})=>{
             {posts && (<div className='grow'>
                 <ul className="flex justify-center flex-wrap mt-10 gap-x-14" style={{ listStyleType: 'none' }}>{
                     posts.map(post=>{
-                    const link=`getOwnPost/?id=${post._id}`
+                    const link=`getOwnPost/?id=${post._id}&userName=${userName}`
                     return <li 
                         className=" w-1/4 h-64  mb-10"
                     key={post._id}>

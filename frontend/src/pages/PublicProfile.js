@@ -25,8 +25,9 @@ const PublicProfile=()=>{
                     <div className="flex justify-end ">
                         {cookie.getUserCookie()===userName &&<AddBioIcon/>}
                     </div>
+
                 </div>
-                {cookie.getUserCookie()===userName?<PostForm/>:<Stats/>}    
+                {cookie.getUserCookie()===userName?<PostForm/>:<Stats userName={userName}/>}    
 
             </div>
             <FeedPostForPublic userName={userName}/>

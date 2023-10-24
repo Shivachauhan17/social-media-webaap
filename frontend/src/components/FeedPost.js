@@ -66,7 +66,7 @@ const FeedPost=({userName})=>{
     //   </div>
     // </div>
        
-    <PostList posts={posts}/>
+    <PostList posts={posts} userName={userName}/>
     )
 }
 

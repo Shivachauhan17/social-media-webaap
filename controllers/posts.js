@@ -51,6 +51,61 @@ module.exports = {
       return res.json({msg:"error"})
     }
   },
+
+
+  getStats:async(req,res)=>{
+
+    try{
+      console.log("in stats")
+      const userName=req.params.userName
+      let stats={
+        likes:0,
+        comments:0,
+        posts:0
+      }
+      total_likes=0
+      total_posts=0
+      postIdArray=[]
+
+      await Post.find({user:userName})
+        .then((Posts)=>{
+          if(total_posts===0){
+            total_posts=Posts.length
+          }
+
+          Posts.forEach((element)=>{
+            total_likes+=element.likes
+
+            postIdArray.push(element._id)
+
+          })
+        })
+        .catch((err)=>console.log(err))
+      
+      total_comments=0
+      for(let i=0;i<postIdArray.length;i++){
+        await Comment.find({_id:postIdArray[i]})
+          .then((comments)=>{
+            total_comments+=comments.length
+          })
+          .catch((error)=>{
+            console.log("error in ",i,"iteration")
+            console.log(error)
+          })
+      }
+
+      stats.comments=total_comments
+      stats.likes=total_likes
+      stats.posts=total_posts
+
+      res.json({stats:stats})
+
+    }
+    catch(error){
+      console.log(error)
+      return res.json({msg:"error"})
+    }
+  },
   
   createPost:async (req,res)=>{
     try{
