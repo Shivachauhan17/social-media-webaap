@@ -1,5 +1,5 @@
 import React, {useState, useEffect,createContext,useContext } from "react";
-import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import Cookie from '../components/Cookie'
 import Header from "../components/Header";
@@ -7,6 +7,7 @@ import Bio_Profile from '../components/Bio_Profile'
 import AddBioIcon from '../components/AddBioIcon'
 import PostForm from '../components/PostForm'
 import FeedPost from "../components/FeedPost";
+import LiveIcon from "../components/LiveIcon";
 import './css/Profile.css'
 
 // import Header from './header'
@@ -29,6 +30,7 @@ export default function Profile(){
     return(
         <ProfileContext.Provider value={{newPost,setNewPost}}>
             <Header/>
+           <Link to="/LiveNow"> <LiveIcon/></Link>
             <div className="flex justify-around mt-20">
                 <div >
                     <Bio_Profile userName={cookie.getUserCookie()}/>

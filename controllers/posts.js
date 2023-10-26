@@ -84,7 +84,7 @@ module.exports = {
       
       total_comments=0
       for(let i=0;i<postIdArray.length;i++){
-        await Comment.find({_id:postIdArray[i]})
+        await Comment.find({post:postIdArray[i]})
           .then((comments)=>{
             total_comments+=comments.length
           })
@@ -130,14 +130,14 @@ module.exports = {
 
   likePost:async(req,res)=>{
     try{
-      const like=await Like.findOne({post_id:req.body.post_id,user:req.body.post_id})
+      const like=await Like.findOne({post_id:req.body.post_id,user:req.body.user})
 
       if(!like){
 
         Like.create({
           post_id:req.body.post_id,
           is_liked:1,
-          user:req.body.post_id,
+          user:req.body.user,
         })
         await Post.findOneAndUpdate({
           _id:req.body.post_id,

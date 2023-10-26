@@ -7,7 +7,7 @@ import  Profile  from "./pages/profile";
 import Post from './pages/Post'
 import Feed from "./pages/Feed";
 import PublicProfile from "./pages/PublicProfile";
-
+import LiveIcon from "./components/LiveIcon";
 
 
 function App() {
