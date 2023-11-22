@@ -2,24 +2,24 @@ import React from 'react';
 import { useCookies } from 'react-cookie';
 
 const CookieService = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(['user']);
+  const [cookies, setCookie, removeCookie] = useCookies(['id']);
 
-  const setUserCookie = (value, options = {}) => {
-    setCookie('user', value, options);
+  const setIdCookie = (value, options = {}) => {
+    setCookie('id', value, options);
   };
 
-  const getUserCookie = () => {
-    return cookies.user || null;
+  const getIdCookie = () => {
+    return cookies.id || null;
   };
 
-  const removeUserCookie = () => {
-    removeCookie('user');
+  const removeIdCookie = () => {
+    removeCookie('id');
   };
 
   return {
-    setUserCookie,
-    getUserCookie,
-    removeUserCookie,
+    setIdCookie,
+    getIdCookie,
+    removeIdCookie,
   };
 };
 

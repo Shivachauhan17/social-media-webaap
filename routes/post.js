@@ -12,7 +12,7 @@ const upload=multer({dest:'uploads/'});
 router.get("/getFeed",postsController.getFeed)
 
 router.get("/:postId",postsController.getPost);
-router.get('/getBio/:username',postsController.getBio)
+router.get('/getBio',postsController.getBio)
 router.get('/getStats/:userName',postsController.getStats)
 router.post("/",postsController.getProfilePost);
 router.post("/createPost",upload.single("myfile"),postsController.createPost)

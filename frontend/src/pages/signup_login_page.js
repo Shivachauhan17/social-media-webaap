@@ -2,24 +2,25 @@ import React,{useState,useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import './css/signup_login_page.css'
-import Cookie from '../components/Cookie'
 import logo from 'C:/Users/Hp/Desktop/social-network-webaap/frontend/src/img/icon.png'
 import axios from "axios";
 import GoogleLoginButton from '../components/GoogleLoginButton'
 
 const LoginSignup= ()=>{
-    const cookieData=Cookie();
-    const navigate=useNavigate();
-       
+    const [user,setUser]=useState(null)  
+    console.log(user)
         useEffect(()=>{
-          if(cookieData.getUserCookie()){
-            
-            const user=cookieData.getUserCookie();
-            if(user!==null){
-            navigate('/profile');}
-          }
-        },[])
+            const getUser=async()=>{
+                let response=await fetch("http://localhost:8000",{
+                    credentials: "include",
+                });
+                response=await response.json();
+                setUser(response)
+            }
 
+            getUser();
+        }
+        ,[])
         
             return(
         <div>

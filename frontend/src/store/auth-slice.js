@@ -1,10 +1,16 @@
-import { configureStore } from "@reduxjs/toolkit";
-import windowSlice from './window-slice'
+import { createSlice } from "@reduxjs/toolkit";
 
-const store=configureStore({
-    reducer:{
-        auth:windowSlice.reducer
+const authSlice=createSlice({
+    name:"auth",
+    initialState:{
+        userName:"",
+    },
+    reducers:{
+        setUserName(state,payload){
+            state.userName=payload.name;
+        }
     }
 })
+export const authActions=authSlice.actions;
 
-export default store;
+export default authSlice;

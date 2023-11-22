@@ -8,9 +8,8 @@ const cloudinary = require("../middleware/cloudinary");
 
 module.exports = {
   getProfilePost: async (req, res) => {
-    console.log(req.body)
-    console.log(req.file)
-    const posts=await Post.find({user:req.body.user})
+    
+    const posts=await Post.find({user:req.user.userName})
     res.json({posts:posts})
   },
  
@@ -43,8 +42,8 @@ module.exports = {
 
   getBio:async(req,res)=>{
     try{
-      const response=await Bio.findOne({username:req.params.username})
-      return res.json({bio:response})
+      const bio=await Bio.findOne({username:req.user.userName})
+      return res.json({bio:bio,username:req.user.userName})
     }
     catch(error){
       console.log(error)
@@ -109,8 +108,7 @@ module.exports = {
   
   createPost:async (req,res)=>{
     try{
-      console.log(req.body)
-      console.log(req.file)
+      
       const result=await cloudinary.uploader.upload(req.file.path)
 
       await Post.create({
@@ -118,7 +116,7 @@ module.exports = {
         cloudinaryId:result.public_id,
         caption:req.body.caption,
         likes:0,
-        user:req.body.user,
+        user:req.user.userName,
       })
       console.log("post has been added")
       return res.json({msg:"post has been added"})
@@ -204,11 +202,10 @@ module.exports = {
   addBio:async(req,res)=>{
     try{
       
-      const username = req.body.username;
 
         // Check if a document with the given username exists
-        const existingBio = await Bio.findOne({ username });
-
+        const existingBio = await Bio.findOne({username: req.user.userName });
+        let bio=existingBio;
         if (existingBio) {
             // Update the existing document
             existingBio.profession = req.body.profession;
@@ -220,7 +217,7 @@ module.exports = {
         } else {
             // Create a new document if it doesn't exist
             const newBio = new Bio({
-                username: req.body.username,
+                username: req.user.userName,
                 profession: req.body.profession,
                 hobby: req.body.hobby,
                 birthday: req.body.birthday,
@@ -228,9 +225,10 @@ module.exports = {
             });
 
             await newBio.save();
+            bio=newBio;
         }
 
-        return res.json({ msg: "success" });
+        return res.json({ bio:bio});
     }
     catch(error){
       console.log(error)

@@ -8,7 +8,8 @@ import Post from './pages/Post'
 import Feed from "./pages/Feed";
 import PublicProfile from "./pages/PublicProfile";
 import LiveIcon from "./components/LiveIcon";
-
+import LoginSuccessFull from "./pages/LoginSuccessFull";
+import LoginFailed from "./pages/LoginFailed";
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
       <Route path='/publicProfile/getOwnPost' exact element={<Post/>}/>
       <Route path='/feed' element={<Feed/>}/>
       <Route path='/publicProfile' element={<PublicProfile/>}/>
+      <Route path='/loginSuccessful' element={<LoginSuccessFull/>}/>
+      <Route path='/loginFailure' element={<LoginFailed/>}/>
     </Routes>
     </BrowserRouter>
     

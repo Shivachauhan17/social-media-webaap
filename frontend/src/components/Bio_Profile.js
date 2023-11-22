@@ -1,8 +1,8 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect } from "react";
 import {memo} from 'react';
-import axios from 'axios'
-import Cookie from '../components/Cookie'
-
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import {useDispatch} from 'react-redux';
+import { userActions } from "../store/user-slice";
 import './css/UserProfile.css'
 
 import { ImProfile } from 'react-icons/im';
@@ -10,16 +10,19 @@ import { BiTennisBall } from 'react-icons/bi';
 import { LiaBirthdayCakeSolid } from 'react-icons/lia';
 import { BsFillBalloonHeartFill } from 'react-icons/bs';
 
-const Bio_Profile=({userName})=>{
-    const [bio,setBio]=useState({})
-  const cookie=Cookie()
+const Bio_Profile=()=>{
+  const dispatch=useDispatch()
+    const username=useSelector(state=>state.user.username);
+    const bio=useSelector(state=>state.user.bio);
+    
     useEffect(()=>{
     
         const fetchBio=async()=>{
-          const url=`http://localhost:8000/post/getBio/${userName}`
-          let response=await axios.get(url)
-          
-          setBio(response.data.bio)
+          const url='http://localhost:8000/post/getBio';
+          let response=await fetch(url);
+          console.log("got response:",response)
+          dispatch(userActions.setBio({bio:response.data.bio}))
+          dispatch(userActions.setUsername({username:response.data.username}))
         }
         fetchBio()
     
@@ -32,7 +35,7 @@ const Bio_Profile=({userName})=>{
                   className="shadow-lg"
                   src='https://imgs.search.brave.com/AMJIF4luRDh-XqO7A9Nmb2O84SqbuDIrugtKeEL5gx4/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG4u/ZmFuZG9td2lyZS5j/b20vd3AtY29udGVu/dC91cGxvYWRzLzIw/MjMvMDcvMzAwOTE1/NDYvSU1HXzAzMjku/anBlZw'/>
               
-                  <h3>{userName}</h3>
+                  <h3>{username}</h3>
                   
               </div>
 
@@ -61,11 +64,11 @@ const Bio_Profile=({userName})=>{
 
               </div>
             </div>:<div className="profileSec ">
-                  <img 
+                <img 
                   className="shadow-lg"
                   src='https://imgs.search.brave.com/AMJIF4luRDh-XqO7A9Nmb2O84SqbuDIrugtKeEL5gx4/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG4u/ZmFuZG9td2lyZS5j/b20vd3AtY29udGVu/dC91cGxvYWRzLzIw/MjMvMDcvMzAwOTE1/NDYvSU1HXzAzMjku/anBlZw'/>
               
-                  <h3>{cookie.getUserCookie()}</h3>
+                  <h3>{username}</h3>
                   
               </div>}
             </div>

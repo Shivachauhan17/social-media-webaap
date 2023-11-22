@@ -2,7 +2,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 const windowSlice=createSlice({
-    name:"auth",
+    name:"window",
     initialState:{
         isWindow:false,
     },

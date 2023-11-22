@@ -1,9 +1,11 @@
 import React, { memo } from 'react'
 import {FcLike} from "react-icons/fc";
+import {  useSelector } from 'react-redux/es/hooks/useSelector';
 
+const Postlist=({posts})=>{
+    
+    const userName=useSelector(state=>state.user.username)
 
-const Postlist=({posts,userName})=>{
-        
     return(
     <div className='relative top-14'>
         <div className="flex flex-col gap-x-9 ">

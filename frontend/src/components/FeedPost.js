@@ -3,24 +3,18 @@ import { useProfileContext } from "../pages/profile";
 
 import {memo} from 'react';
 import axios from "axios";
-import Cookie from './Cookie'
-import styles from './css/FeedPost.css'
 import PostList from "./PostList";
 
 
 
-const FeedPost=({userName})=>{
-  const {newPost,setNewPosts}=useProfileContext()
+const FeedPost=()=>{
+  const {newPost}=useProfileContext()
     const [posts,setPosts]=useState([])
-    // const cookie=Cookie()
-    const data={
-        // user:cookie.getUserCookie()
-        user:userName
-    }
+    
     useEffect(() => {
         const fetchPosts = async () => {
           try {
-            const response = await axios.post('http://localhost:8000/post/', data);
+            const response = await axios.post('http://localhost:8000/post/');
            
             const postArray=response.data.posts
             setPosts(postArray)
@@ -66,7 +60,7 @@ const FeedPost=({userName})=>{
     //   </div>
     // </div>
        
-    <PostList posts={posts} userName={userName}/>
+    <PostList posts={posts} />
     )
 }
 

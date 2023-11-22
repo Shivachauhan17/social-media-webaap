@@ -1,18 +1,16 @@
 import React,{useState,memo} from 'react';
 import axios from 'axios';
-import Cookie from '../components/Cookie'
 import Swal from 'sweetalert2';
-
+import { userActions } from '../store/user-slice';
+import { useDispatch } from 'react-redux';
 
 const AddBioForm=()=>{
-    const cookie=Cookie()
-    const[pop,setPop]=useState(false)
+    const dispatch=useDispatch();
     const [formData,setFormData]=useState({
         profession:"",
         hobby:"",
         birthday:"",
-        loveToDo:"",
-        username:cookie.getUserCookie()
+        loveToDo:""
     })
 
     const handleProfession=(e)=>{
@@ -44,7 +42,8 @@ const AddBioForm=()=>{
         try{
             e.preventDefault()
             const response=await axios.post('http://localhost:8000/post/addBio',formData)
-            
+            const bio=response.data.bio;
+            dispatch(userActions.setBio({bio:bio}));
         }
         catch(err){
             

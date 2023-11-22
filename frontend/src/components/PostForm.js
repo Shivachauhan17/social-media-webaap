@@ -1,7 +1,6 @@
 import React,{useState} from "react";
 import {memo} from 'react';
 import axios from 'axios'
-import Cookie from '../components/Cookie'
 import { useProfileContext } from "../pages/profile";
 import {AiFillMail,AiOutlineArrowDown} from 'react-icons/ai'
 
@@ -9,12 +8,10 @@ import {AiFillMail,AiOutlineArrowDown} from 'react-icons/ai'
 const PostForm=()=>{
   const {newPost,setNewPost}=useProfileContext()
 
-    const cookie=Cookie()
 
     const [formData, setFormData] = useState({
         image: null,
         caption: '',
-        user:cookie.getUserCookie()
       });
 
     const handleImageChange = (event) => {
@@ -34,7 +31,6 @@ const PostForm=()=>{
         const formDataToSend=new FormData();
         formDataToSend.append('myfile',formData.image)
         formDataToSend.append('caption',formData.caption)
-        formDataToSend.append('user',formData.user)
     
         try {
           const response = await axios.post('http://localhost:8000/post/createPost', formDataToSend,{
@@ -48,7 +44,6 @@ const PostForm=()=>{
             setFormData({
               image: null,
         caption: '',
-        user:cookie.getUserCookie()
             })
           
           setNewPost(newPost=>!newPost)
