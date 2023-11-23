@@ -16,7 +16,7 @@ const Postlist=({posts})=>{
             {posts && (<div className='grow'>
                 <ul className="flex justify-center flex-wrap mt-10 gap-x-14" style={{ listStyleType: 'none' }}>{
                     posts.map(post=>{
-                    const link=`getOwnPost/?id=${post._id}&userName=${userName}`
+                    const link=`getOwnPost/?id=${post._id}`
                     return <li 
                         className=" w-1/4 h-64  mb-10"
                     key={post._id}>

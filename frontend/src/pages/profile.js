@@ -30,7 +30,7 @@ export default function Profile(){
             <div className="flex justify-around mt-20">
                 <div >
                     <Bio_Profile />
-                    <div className="flex justify-end">
+                    <div className="flex justify-end pr-5">
                         <AddBioIcon/>
                     </div>
                 </div>

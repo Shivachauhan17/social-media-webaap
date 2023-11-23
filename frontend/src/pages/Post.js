@@ -4,19 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import Header from '../components/Header'
-import Cookie from '../components/Cookie'
 import CommentBox from '../components/CommentBox'
 import {FcLike} from "react-icons/fc";
 import {RiDeleteBinLine} from 'react-icons/ri'
+import { UseSelector, useSelector } from 'react-redux/es/hooks/useSelector';
 
 const OwnerPost=()=>{
     const navigate=useNavigate()
-    const cookie=Cookie()
-    const user=cookie.getUserCookie()
-    console.log(user)
     const [searchParams]=useSearchParams()
     const id=searchParams.get('id')
-    const userName=searchParams.get('userName')
+    const userName=useSelector(state=>state.user.username)
     const postTitle=`${userName}'s post`
     const [newComment,setNewComment]=useState('')
     const [comments,setComments]=useState([]) 
@@ -59,8 +56,7 @@ const OwnerPost=()=>{
          
             let response=await axios.put('http://localhost:8000/post/like',{
                 post_id:post._id,
-                is_liked:1,
-                user:cookie.getUserCookie()
+                is_liked:1
             })
             setPost(response.data.post)
         }
@@ -86,7 +82,7 @@ const OwnerPost=()=>{
                     <FcLike className='text-4xl' onClick={putLike}/>
                     <h5 className='mt-2'>{post.likes}</h5>
                     </div>
-                    {cookie.getUserCookie()===post.user && (<RiDeleteBinLine className='text-3xl mt-5 hover:text-4xl' onClick={handleDelete}/>)}
+                    {userName===post.user && (<RiDeleteBinLine className='text-3xl mt-5 hover:text-4xl' onClick={handleDelete}/>)}
                 </div>
                
             <CommentBox postId={id}/>

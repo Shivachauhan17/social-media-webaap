@@ -3,19 +3,28 @@ import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import './css/signup_login_page.css'
 import logo from 'C:/Users/Hp/Desktop/social-network-webaap/frontend/src/img/icon.png'
-import axios from "axios";
 import GoogleLoginButton from '../components/GoogleLoginButton'
+import { userActions } from "../store/user-slice";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 
 const LoginSignup= ()=>{
-    const [user,setUser]=useState(null)  
-    console.log(user)
+    const navigate=useNavigate()
+    const dispatch=useDispatch()
+    const username=useSelector(state=>state.user.username)
+
+    if(username!==""){
+        navigate('/profile')
+    }
+
         useEffect(()=>{
             const getUser=async()=>{
                 let response=await fetch("http://localhost:8000",{
                     credentials: "include",
                 });
                 response=await response.json();
-                setUser(response)
+                const user=response.user;
+                dispatch(userActions.setUsername(user));
             }
 
             getUser();

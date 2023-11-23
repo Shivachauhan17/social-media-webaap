@@ -13,16 +13,18 @@ const userSlice=createSlice({
         username:""
     },
     reducers:{
-        setUsername(state,payload){
-            state.username=payload.username
+        setUsername(state,action){
+            
+            const username=action.payload;
+            state.username=username;
         },
 
 
-        setBio(state,payload){
-            state.bio.profession=payload.profession;
-            state.bio.hobby=payload.hobby;
-            state.bio.birthday=payload.birthday;
-            state.bio.love_to_do=payload.love_to_do;
+        setBio(state,action){
+            state.bio.profession=action.payload.profession;
+            state.bio.hobby=action.payload.hobby;
+            state.bio.birthday=action.payload.birthday;
+            state.bio.love_to_do=action.payload.love_to_do;
         }
 
     }

@@ -2,22 +2,27 @@ import React,{useState,useEffect} from "react";
 import { useProfileContext } from "../pages/profile";
 
 import {memo} from 'react';
-import axios from "axios";
+import { useSelector,useDispatch } from "react-redux";
 import PostList from "./PostList";
-
+import { postActions } from "../store/post-slice";
 
 
 const FeedPost=()=>{
   const {newPost}=useProfileContext()
-    const [posts,setPosts]=useState([])
+  const dispatch=useDispatch();
+   const posts=useSelector(state=>state.post.posts);
     
     useEffect(() => {
         const fetchPosts = async () => {
           try {
-            const response = await axios.post('http://localhost:8000/post/');
+            let response = await fetch('http://localhost:8000/post/',{
+              method:"POST",
+              credentials:"include"
+            });
            
-            const postArray=response.data.posts
-            setPosts(postArray)
+            response=await response.json();
+            dispatch(postActions.setPosts(response.posts))
+            
           } catch (error) {
             
           }

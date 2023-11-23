@@ -12,24 +12,33 @@ import { BsFillBalloonHeartFill } from 'react-icons/bs';
 
 const Bio_Profile=()=>{
   const dispatch=useDispatch()
-    const username=useSelector(state=>state.user.username);
+  const username=useSelector(state=>state.user.username)
     const bio=useSelector(state=>state.user.bio);
-    
+    const user=useSelector(state=>state.user);
+    console.log(user)
     useEffect(()=>{
     
         const fetchBio=async()=>{
           const url='http://localhost:8000/post/getBio';
-          let response=await fetch(url);
-          console.log("got response:",response)
-          dispatch(userActions.setBio({bio:response.data.bio}))
-          dispatch(userActions.setUsername({username:response.data.username}))
+          let response=await fetch(url,{
+            credentials: "include",
+        });
+         response=await response.json();
+         
+          if(response.bio){
+            dispatch(userActions.setBio(response.bio));
+          }
+          if(username===""){
+            dispatch(userActions.setUsername(response.username))
+          }
+          
         }
         fetchBio()
     
       },[])
 
     return(<div>
-        {bio ? <div className="flex gap-x-10">
+        {bio.profession!=="" ? <div className="flex gap-x-10">
               <div className="profileSec">
                   <img 
                   className="shadow-lg"
@@ -74,4 +83,4 @@ const Bio_Profile=()=>{
             </div>
     )
 }
-export default memo(Bio_Profile)
+export default Bio_Profile;

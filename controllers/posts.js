@@ -42,6 +42,7 @@ module.exports = {
 
   getBio:async(req,res)=>{
     try{
+      console.log(req.user)
       const bio=await Bio.findOne({username:req.user.userName})
       return res.json({bio:bio,username:req.user.userName})
     }
@@ -108,6 +109,7 @@ module.exports = {
   
   createPost:async (req,res)=>{
     try{
+      console.log(req)
       
       const result=await cloudinary.uploader.upload(req.file.path)
 
@@ -202,7 +204,7 @@ module.exports = {
   addBio:async(req,res)=>{
     try{
       
-
+      console.log(req.user)
         // Check if a document with the given username exists
         const existingBio = await Bio.findOne({username: req.user.userName });
         let bio=existingBio;

@@ -1,5 +1,4 @@
 import React,{useState,memo} from 'react';
-import axios from 'axios';
 import Swal from 'sweetalert2';
 import { userActions } from '../store/user-slice';
 import { useDispatch } from 'react-redux';
@@ -40,13 +39,22 @@ const AddBioForm=()=>{
 
     const handleSubmit=async (e)=>{
         try{
-            e.preventDefault()
-            const response=await axios.post('http://localhost:8000/post/addBio',formData)
-            const bio=response.data.bio;
-            dispatch(userActions.setBio({bio:bio}));
+            e.preventDefault();
+            let response=await fetch('http://localhost:8000/post/addBio',{
+                method:"POST",
+                headers: {
+                    "Content-Type": "application/json",
+                  },
+                credentials: "include",
+                body:JSON.stringify(formData)
+            })
+            
+            response=await response.json();
+            console.log(response)
+            const bio=response.bio;
+            dispatch(userActions.setBio(bio));
         }
         catch(err){
-            
             Swal.fire('while updating bio something gone wrong')
         }
     }
@@ -88,7 +96,7 @@ const AddBioForm=()=>{
                         onChange={handleLoveToDo}/>
                     </div>
                     <div className='flex justify-around'>
-                        <button type='submit' className='font-bold border-4 border-gray-400 p-0.5 hover:bg-gray-200'>Change</button>
+                        <button type='submit' className='font-bold border-4 border-gray-400 p-0.5 hover:bg-gray-200' >Change</button>
                     </div>
                 </form>
                 

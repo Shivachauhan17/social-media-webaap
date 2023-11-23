@@ -31,6 +31,7 @@ const PostForm=()=>{
         const formDataToSend=new FormData();
         formDataToSend.append('myfile',formData.image)
         formDataToSend.append('caption',formData.caption)
+        formDataToSend.append('user',formData.user)
     
         try {
           const response = await axios.post('http://localhost:8000/post/createPost', formDataToSend,{
@@ -38,12 +39,13 @@ const PostForm=()=>{
               headers: {
                 'Content-Type': 'multipart/form-data', // Set the content type to handle file uploads
               },
+              withCredentials: true,
           });
           
             
             setFormData({
               image: null,
-        caption: '',
+        caption: ''
             })
           
           setNewPost(newPost=>!newPost)
