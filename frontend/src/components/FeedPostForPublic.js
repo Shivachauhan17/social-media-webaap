@@ -4,21 +4,31 @@ import {memo} from 'react';
 import axios from "axios";
 
 import PostList from "./PostList";
-
-
+import {useSelector,useDispatch} from 'react-redux';
+import { postActions } from "../store/post-slice";
 
 const FeedPostForPublic=({userName})=>{
-    const [posts,setPosts]=useState([])
+    const dispatch=useDispatch();
+    const posts=useSelector(state=>state.post.posts)
+    console.log(posts)
     const data={
         user:userName
     }
     useEffect(() => {
         const fetchPosts = async () => {
           try {
-            const response = await axios.post('http://localhost:8000/post/', data);
+            const url='http://localhost:8000/post/4public'
+            let response = await fetch(url, {
+              credentials:"include",
+              headers:{
+                "Content-Type": "application/json",
+              },
+              method:"GET",
+              body:JSON.stringify(data)
+            });
            
-            const postArray=response.data.posts
-            setPosts(postArray)
+            response=await response.json();
+            dispatch(postActions.setPosts(response.posts))
           } catch (error) {
             
           }
@@ -27,13 +37,7 @@ const FeedPostForPublic=({userName})=>{
         fetchPosts();
       }, []);
 
-      useEffect(() => {
-        const returnCompo=()=>{
-          
-        }
-        returnCompo()
-
-      }, []);
+      
     return(
     <PostList posts={posts} userName={userName}/>
     )

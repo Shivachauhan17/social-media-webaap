@@ -4,7 +4,15 @@ const postSlice=createSlice({
     name:"post",
     initialState:{
         posts:[],
-        feedPosts:[]
+        feedPosts:[],
+        comments:[],
+        post:{
+            image:"",
+            cloudinaryId:"",
+            caption:"",
+            likes:"",
+            user:""
+        }
     },
     reducers:{
         setPosts(state,action){
@@ -12,7 +20,14 @@ const postSlice=createSlice({
         },
         setFeedPosts(state,action){
             state.feedPosts=action.payload;
+        },
+        setComments(state,action){
+            state.comments=action.payload;
+        },
+        setPost(state,action){
+            state.post=action.payload;
         }
+
     }
 })
 

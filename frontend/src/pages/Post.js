@@ -1,23 +1,24 @@
 import React,{useState,useEffect} from 'react'
 import { useSearchParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'
 import Swal from 'sweetalert2'
 import Header from '../components/Header'
 import CommentBox from '../components/CommentBox'
 import {FcLike} from "react-icons/fc";
 import {RiDeleteBinLine} from 'react-icons/ri'
-import { UseSelector, useSelector } from 'react-redux/es/hooks/useSelector';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { postActions } from '../store/post-slice';
+import { userActions } from '../store/user-slice'; 
 const OwnerPost=()=>{
+
     const navigate=useNavigate()
     const [searchParams]=useSearchParams()
     const id=searchParams.get('id')
     const userName=useSelector(state=>state.user.username)
+    const post=useSelector(state=>state.post.post);
     const postTitle=`${userName}'s post`
-    const [newComment,setNewComment]=useState('')
-    const [comments,setComments]=useState([]) 
-    const [post,setPost]=useState({})
+    
+    const dispatch=useDispatch();
 
     const [formData,setFormData]=useState({
         person:userName,
@@ -27,42 +28,71 @@ const OwnerPost=()=>{
 
     useEffect(()=>{
         
+        const fetchUser=async()=>{
+            let response=await fetch("http://localhost:8000",{
+                    credentials:"include"
+                });
+                response=await response.json();
+                dispatch(userActions.setUsername(response.user))
+        }
+
         const getPost=async()=>{
             try{
-                const url=`http://localhost:8000/post/${id}`
-                let response=await axios.get(url)
-                let one_post=response.data.post
-                setPost(one_post)
+                
+                let response=await fetch("http://localhost:8000/post/particular",{
+                    credentials:"include",
+                    headers: {
+                        "Content-Type": "application/json",
+                      },
+                    body:JSON.stringify({postId:id}),
+                    method:"POST"
+                });
+                response=await response.json();
+                dispatch(postActions.setPost(response.post))
                 
             }
             catch(error){
+                console.log(error)
                 Swal.fire('some error occured while fetching the post')
             }
         }
-        getPost()
+        fetchUser();
+        getPost();
         
-    },[newComment])
+    },[])
 
-    const handleCommentChange=(e)=>{
-        setFormData({
-            ...formData,
-            comment:e.target.value
-        })
-    }
+    // const handleCommentChange=(e)=>{
+    //     setFormData({
+    //         ...formData,
+    //         comment:e.target.value
+    //     })
+    // }
 
     
 
     const putLike=async()=>{
          
-            let response=await axios.put('http://localhost:8000/post/like',{
-                post_id:post._id,
-                is_liked:1
-            })
-            setPost(response.data.post)
+            let response=await fetch('http://localhost:8000/post/like',{
+                method:"PUT",
+                credentials:"include",
+                headers: {
+                    "Content-Type": "application/json",
+                  },
+                body:JSON.stringify({
+                    post_id:post._id,
+                    is_liked:1
+                })
+        })
+        response= await response.json();
+        dispatch(postActions.setPost(response.post))
+            // setPost(response.data.post)
         }
 
     const handleDelete=async()=>{
-        await axios.delete(`http://localhost:8000/post/delete?id=${post._id}&c_id=${post.cloudinaryId}`)
+        await fetch(`http://localhost:8000/post/delete?id=${post._id}&c_id=${post.cloudinaryId}`,{
+            method:"DELETE",
+                credentials:"include"
+        })
 
         navigate('/profile')
 

@@ -1,42 +1,76 @@
 import React,{useState,useEffect, memo} from 'react'
-import Cookie from '../components/Cookie'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import {useSelector,useDispatch} from 'react-redux';
+import { postActions } from '../store/post-slice';
+import { userActions } from '../store/user-slice'; 
 
 const CommentBox=({postId})=>{
-    const cookie=Cookie()
-    const [newComment,setNewComment]=useState(false)
-    const [comments,setComments]=useState([])
+    const dispatch=useDispatch()
+    const comments=useSelector(state=>state.post.comments)
+    const userName=useSelector(state=>state.user.username)
     const [formData,setFormData]=useState({
-        person:cookie.getUserCookie(),
+        person:userName,
         comment:"",
         post:postId
     })
 
     useEffect(()=>{
+
+        const fetchUser=async()=>{
+            let response=await fetch("http://localhost:8000",{
+                    credentials:"include"
+                });
+                response=await response.json();
+                dispatch(userActions.setUsername(response.user))
+                setFormData({
+                    ...formData,
+                    person:response.user
+                })
+        }
+
         const getComments=async()=>{
             try{
-            let gotComments=await axios.post('http://localhost:8000/post/getComments',{post:postId})
-            gotComments=gotComments.data.comments
-            setComments(gotComments)   
+            let response=await fetch('http://localhost:8000/post/getComments',{
+                credentials:"include",
+                headers: {
+                    "Content-Type": "application/json",
+                  },
+                  method:"POST",
+                body:JSON.stringify({post:postId})})
+            response=await response.json();
+            dispatch(postActions.setComments(response.comments))
+            
          
         }
         catch(err){
             Swal.fire('some error occured while fetching comments')
         }
         }
+
+        fetchUser();
         getComments()
-    },[newComment])
+    },[])
 
     const handleSubmit=async(e)=>{
         e.preventDefault()
         try{
-        await axios.post('http://localhost:8000/post/comment',formData)
-        setNewComment(!newComment)
+        let response=await fetch('http://localhost:8000/post/comment',{
+        method:"POST",
+        credentials:"include",
+        headers:{
+            "Content-Type": "application/json"
+        },
+
+        body:JSON.stringify(formData)})
+
+        response=await response.json();
+        dispatch(postActions.setComments(response.comments))
+        
         
         setFormData({
             ...formData,
-            comment:''
+            comment:""
         })
         }
         catch(err){

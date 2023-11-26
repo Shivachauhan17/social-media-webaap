@@ -4,18 +4,28 @@ import {memo} from 'react';
 import axios from "axios";
 import PostList from '../components/PostList'
 import Header from '../components/Header' 
-
+import { useSelector,useDispatch } from "react-redux";
+import { postActions } from "../store/post-slice";
 const Feed=()=>{
-    const [posts,setPosts]=useState([])
-
+    const dispatch=useDispatch();
+    const posts=useSelector(state=>state.post.posts);
+    console.log(posts)
     useEffect(()=>{
-        const fetchAllPosts=async()=>{
-            let response=await axios.get('http://localhost:8000/post/getFeed')
-            
-
-            setPosts(response.data.posts)
-        }
-        fetchAllPosts()
+        const fetchPosts = async () => {
+            try {
+              let response = await fetch('http://localhost:8000/post/getFeed',{
+                method:"GET",
+                credentials:"include"
+              });
+             
+              response=await response.json();
+              dispatch(postActions.setPosts(response.posts))
+              
+            } catch (error) {
+              
+            }
+          };
+          fetchPosts()
     },[])
 
 

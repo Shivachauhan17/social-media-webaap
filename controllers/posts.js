@@ -7,6 +7,22 @@ const cloudinary = require("../middleware/cloudinary");
 
 
 module.exports = {
+  getProfilePost4Public:async(req,res)=>{
+    const posts=await Post.find({user:req.body.user})
+    console.log(posts)
+    res.json({posts:posts})
+  },
+  getBioPublic:async(req,res)=>{
+    try{
+    const username=req.body.username;
+    const bio=await Bio.findOne({username:username});
+    return res.json({bio:bio,username})
+    }
+    catch(error){
+      console.log(error)
+      return res.json({msg:"error"})
+    }
+  },
   getProfilePost: async (req, res) => {
     
     const posts=await Post.find({user:req.user.userName})
@@ -28,10 +44,8 @@ module.exports = {
 
    getPost:async (req,res)=>{
     try{
-      const postId=new mongoose.Types.ObjectId(req.params.postId)
-      console.log(req.params.postId)
+      const postId=new mongoose.Types.ObjectId(req.body.postId)
         const post=await Post.findOne({_id:postId})
-        console.log(post)
         return res.json({post:post})
     }
     catch(error){
@@ -52,6 +66,7 @@ module.exports = {
     }
   },
 
+  
 
   getStats:async(req,res)=>{
 
@@ -146,12 +161,11 @@ module.exports = {
           $inc:{likes:1},
         })
         console.log("like+1")
+        
         const post=await Post.findOne({_id:req.body.post_id})
         return res.json({post:post})
     }
-    console.log('arse')
-    const post=await Post.findOne({_id:req.body.post_id})
-    console.log(post)
+    const post=await Post.findOne({_id:new mongoose.Types.ObjectId(req.body.post_id)})
       return res.json({post:post})
 
     }
@@ -175,14 +189,14 @@ module.exports = {
   },  
   postComment:async (req,res)=>{
     try{
-      console.log(req.body)
       await Comment.create({
         comment:req.body.comment,
         person:req.body.person,
         post:req.body.post,
       })
       
-      return res.json({msg:"success"})
+      const comments=await Comment.find({post:req.body.post})
+      return res.json({comments:comments})
 
     }
     catch(err){
