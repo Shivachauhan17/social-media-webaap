@@ -9,13 +9,13 @@ const GOOGLE_CLIENT_ID=process.env.GOOGLE_CLIENT_ID
 const GOOGLE_CLIENT_SECRET=process.env.GOOGLE_SECRET_ID
 
 module.exports = function (passport) {
-  passport.use(new LocalStrategy({ usernameField: 'userName' }, async (username, password, done) => {
-
+  passport.use(new LocalStrategy( async (username, password, done) => {
     await User.findOne({ userName: username })
         .then((user) => {
             if (!user) { return done(null, false) }
             
-            const isValid = validPassword(password, user.hash, user.salt);
+            const isValid = validPassword(password, user.password, user.salt);
+            
             if (isValid) {
                 return done(null, user);
             } else {
@@ -61,7 +61,8 @@ module.exports = function (passport) {
 
 
       passport.serializeUser((user, done) => {
-        if(user.googleId){
+        if(user.googleId!==undefined){
+
         const newUser={
           id:user._id,
           googleId:true
@@ -71,12 +72,15 @@ module.exports = function (passport) {
       const newUser={
         id:user._id,
         googleId:false
+
       }
+      console.log(newUser)
   done(null, newUser)
     }
   })
 
   passport.deserializeUser(async (userInfo, done) => {
+    console.log(userInfo)
     try {
       if(userInfo.googleId){
         const id=new mongoose.Types.ObjectId(userInfo.id)

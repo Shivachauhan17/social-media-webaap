@@ -43,16 +43,19 @@ exports.postLogin=async (req,res,next)=>{
 
 exports.getLogout = (req, res) => {
   try{
-    req.logout(() => {
-      console.log('User has logged out.')
-    })
+    
+    // req.logout(() => {
+    //   console.log('User has logged out.')
+    // })
     req.session.destroy((err) => {
-      if (err) console.log('Error : Failed to destroy the session during logout.', err)
-      req.user = null
-    })
+      if (err)
+        console.log("Error : Failed to destroy the session during logout.", err);
+      res.status(200).json({status:'ok'});
+    });
   }
   catch(error){
-    res.redirect('/')
+    console.log(error)
+    res.status(500).json({status:'not ok'});
   }
 }
 
@@ -60,14 +63,13 @@ exports.getLogout = (req, res) => {
 
     exports.postSignup = async (req, res, next) => {
         const validationErrors = []
-        console.log("req body in post Signup",req.body)
         if (!validator.isLength(req.body.password, { min: 8 })) validationErrors.push({ msg: 'Password must be at least 8 characters long' })
         if (req.body.password !== req.body.confirmPassword) validationErrors.push({ msg: 'Passwords do not match' })
        
         if (validationErrors.length) {
           return res.json({error:validationErrors})
         }
-        const existingUser=await User.findOne({$or:[{username:req.body.userName}]})
+        const existingUser=await User.findOne({username:req.body.userName})
         console.log("existing user:",existingUser)
         if(existingUser !== null && existingUser !== undefined){ 
           console.log("user existed")
@@ -78,27 +80,14 @@ exports.getLogout = (req, res) => {
         const salt=saltHash.salt;
         const hash=saltHash.hash;
 
-        // const user = new User({
-        //   username: req.body.userName,
-        //   password:req.body.password
-        // })
+        console.log("username is",req.body.username)
+      
         const newUser = new User({
-          username: req.body.userName,
+          userName: req.body.userName,
           password:hash,
           salt:salt
         })
-        // try{
         
-        //   user.save()
-        //     req.logIn(user,(err)=>{
-        //       if(err) return res.json({error:[err]})
-        //       res.json({user:user})
-        //     })
-        //     console.log(" after req.login")
-        //   }
-        //   catch(err){
-        //     return res.json({error:[err]})
-        //   }
           
         newUser.save()
         return res.json({user:req.body.userName})

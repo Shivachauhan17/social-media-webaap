@@ -6,7 +6,7 @@ router.get('/auth/google',
 
 
   router.get('/auth/google/callback', 
-  passport.authenticate('google', {failureRedirect: 'http://localhost:3000/loginSuccessful',successRedirect:'http://localhost:3000/loginFailure' })
+  passport.authenticate('google', {failureRedirect: 'http://localhost:3000/loginFailure',successRedirect:'http://localhost:3000/loginSuccessful' })
   );
 
 module.exports=router

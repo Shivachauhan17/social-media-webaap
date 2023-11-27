@@ -3,11 +3,12 @@ import axios from 'axios'
 import {AiOutlineLike} from 'react-icons/ai'
 import {BiCommentDetail} from 'react-icons/bi'
 import {GiPhotoCamera} from 'react-icons/gi'
+import Cookie from '../components/Cookie';
 
 
-
-const Stats=({userName})=>{
-
+const Stats=()=>{
+    const cookie=Cookie();
+    const userName=cookie.getpublicUserCookie();
     const [stats,setStats]=useState({ })
 
     useEffect(()=>{

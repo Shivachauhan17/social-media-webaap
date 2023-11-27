@@ -1,16 +1,19 @@
 import React,{useState,useEffect} from "react";
 
 import {memo} from 'react';
-import axios from "axios";
+import Swal from 'sweetalert2'
 
 import PostList from "./PostList";
 import {useSelector,useDispatch} from 'react-redux';
 import { postActions } from "../store/post-slice";
+import Cookie from '../components/Cookie';
 
-const FeedPostForPublic=({userName})=>{
+
+const FeedPostForPublic=()=>{
+  const cookie=Cookie();
+    const userName=cookie.getpublicUserCookie();
     const dispatch=useDispatch();
     const posts=useSelector(state=>state.post.posts)
-    console.log(posts)
     const data={
         user:userName
     }
@@ -23,14 +26,15 @@ const FeedPostForPublic=({userName})=>{
               headers:{
                 "Content-Type": "application/json",
               },
-              method:"GET",
+              method:"POST",
               body:JSON.stringify(data)
             });
            
             response=await response.json();
             dispatch(postActions.setPosts(response.posts))
           } catch (error) {
-            
+            console.log(error)
+                Swal.fire('some error occured while fetching the post')
           }
         };
       

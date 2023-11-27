@@ -4,12 +4,15 @@ import Header from "../components/Header";
 import FeedPostForPublic from "../components/FeedPostForPublic";
 import Stats from '../components/Stats'
 import BioProfile4Public from "../components/BioProfile4Puclic";
+import Cookie from '../components/Cookie';
 
 const PublicProfile=()=>{
+    const cookie=Cookie();
     const [newPost,setNewPost]=useState(false)
      const [searchParams]=useSearchParams()
-     const userName=searchParams.get('userName')
-     
+     const userName=cookie.getpublicUserCookie();
+
+     console.log(userName)
 
      return(
         <div>
@@ -22,10 +25,10 @@ const PublicProfile=()=>{
                     </div>
 
                 </div>
-                <Stats userName={userName}/>    
+                <Stats />    
 
             </div>
-            <FeedPostForPublic userName={userName}/>
+            <FeedPostForPublic />
             
         </div>
      )

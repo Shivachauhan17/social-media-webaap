@@ -2,25 +2,30 @@ import React from 'react';
 import { useCookies } from 'react-cookie';
 
 const CookieService = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(['id']);
+  const [cookies, setCookie, removeCookie] = useCookies(['publicUser']);
 
-  const setIdCookie = (value, options = {}) => {
-    setCookie('id', value, options);
+  const setpublicUserCookie = (value, options = {}) => {
+    setCookie('publicUser', value, options);
   };
 
-  const getIdCookie = () => {
-    return cookies.id || null;
+  const getpublicUserCookie = () => {
+    return cookies.publicUser || null;
   };
 
-  const removeIdCookie = () => {
-    removeCookie('id');
+  const removeSid=()=>{
+    removeCookie('connect.sid');
+  }
+
+  const removepublicUserCookie = () => {
+    removeCookie('publicUser');
   };
 
   return {
-    setIdCookie,
-    getIdCookie,
-    removeIdCookie,
+    setpublicUserCookie,
+    getpublicUserCookie,
+    removepublicUserCookie,
+    removeSid,
   };
 };
 
-export default CookieService
+export default CookieService;

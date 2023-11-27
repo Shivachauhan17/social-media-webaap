@@ -8,6 +8,7 @@ const cloudinary = require("../middleware/cloudinary");
 
 module.exports = {
   getProfilePost4Public:async(req,res)=>{
+    console.log("req body:",req.body)
     const posts=await Post.find({user:req.body.user})
     console.log(posts)
     res.json({posts:posts})
@@ -24,9 +25,13 @@ module.exports = {
     }
   },
   getProfilePost: async (req, res) => {
-    
+    try{
     const posts=await Post.find({user:req.user.userName})
-    res.json({posts:posts})
+    res.json({posts:posts})}
+    catch(err){
+      console.log(err)
+      res.json({posts:[]})}
+    
   },
  
 

@@ -11,17 +11,17 @@ import axios from 'axios';
 export default function LoginHelper(){
     const cookie=Cookie()
     const navigate=useNavigate();
-    axios.get('http://localhost:8000/login')
-        .then(response=>{
+    // axios.get('http://localhost:8000/login')
+    //     .then(response=>{
             
-            if(response.data.user){
+    //         if(response.data.user){
                 
-                navigate(`/profile/${response.user}`)
-            }
-        })
-        .catch(err=>{
-            console.log(err)
-        })
+    //             navigate(`/profile/${response.user}`)
+    //         }
+    //     })
+    //     .catch(err=>{
+    //         console.log(err)
+    //     })
     
 
     const [loginformdata,setLoginfromdata]=useState({

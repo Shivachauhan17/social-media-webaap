@@ -8,6 +8,9 @@ import PostForm from '../components/PostForm'
 import FeedPost from "../components/FeedPost";
 import LiveIcon from "../components/LiveIcon";
 import './css/Profile.css'
+import { userActions } from "../store/user-slice";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 
 
 export const ProfileContext=createContext();
@@ -18,9 +21,24 @@ export const useProfileContext=()=>useContext(ProfileContext);
 
 export default function Profile(){
     
-    const [newPost,setNewPost]=useState(false)
+    const [newPost,setNewPost]=useState(false);
+    const dispatch=useDispatch();
+    const username=useSelector(state=>state.user.username);
 
-    
+
+    useEffect(()=>{
+        const getUser=async()=>{
+            let response=await fetch("http://localhost:8000/home",{
+                credentials: "include",
+            });
+            response=await response.json();
+            const user=response.user;
+            dispatch(userActions.setUsername(user));
+        }
+
+        getUser();
+    }
+    ,[]);
 
     
     return(

@@ -7,6 +7,7 @@ const session=require('express-session')
 const MongoStore=require('connect-mongo')
 const logger=require('morgan')
 
+app.use(express.static(path.join(__dirname, './frontend/build')));
 const connectDB=require('./config/database')
 require("dotenv").config({ path: "./config/.env" });
 
@@ -28,7 +29,7 @@ app.use(express.json())
 app.use(
   session({
       secret: 'keyboard cat',
-      resave: false,//don't save session is unmodified
+      resave: true,//don't save session is unmodified
       saveUninitialized:true,//don't create session untill something is stores
       store: MongoStore.create({
         mongoUrl: process.env.DB_STRING,
@@ -48,13 +49,16 @@ app.use(passport.session());
 
 app.use((req,res,next)=>{
   console.log("user info : ",req.user);
-  // console.log("session _info",req.session);
+  console.log("session _info",req.session);
   next();
 })
 
 app.use('/',mainRoutes)
 app.use('/post',postRoutes)
 app.use('/',OauthRoutes)
+app.get('*', (req, res) => {
+  res.sendFile( path.join(__dirname, './frontend/build','index.html'));
+});
 
 
 

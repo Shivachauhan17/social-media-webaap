@@ -2,12 +2,10 @@ import React,{useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import './css/SignupForm.css'
 import { useNavigate } from 'react-router-dom';
-import Cookie from './Cookie'
 import Swal from 'sweetalert2'
 import axios from 'axios';
 
 export default function SignupHelper(){
-  const cookie=Cookie();
     const navigate=useNavigate();
     const [formdata,setFormdata]=useState({
 
@@ -55,7 +53,7 @@ export default function SignupHelper(){
             
           }
           else{
-            cookie.setUserCookie(response.user)
+            
             navigate('/profile')
             }
           }

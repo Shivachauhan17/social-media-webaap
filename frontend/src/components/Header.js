@@ -2,15 +2,19 @@ import React from 'react';
 // import './css/Header.css'
 import logo from 'C:/Users/Hp/Desktop/social-network-webaap/frontend/src/img/icon.png'
 import 'bootstrap/dist/css/bootstrap.css';
-import { useNavigate } from 'react-router-dom';
-import CookieService from './Cookie';
+import { useActionData, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import {memo} from 'react'
 import SearchBar from './SearchBar';
+import { useDispatch } from 'react-redux';
+import { userActions } from '../store/user-slice';
 
 const Header=()=>{
     const navigate=useNavigate()
-    const cookie=CookieService()
+    const dispatch=useDispatch()
+
+
+
     const handleLogout=()=>{
       Swal.fire({
         icon: 'warning',
@@ -19,11 +23,15 @@ const Header=()=>{
         showCancelButton: true,
         confirmButtonText: 'Yes, log out',
         cancelButtonText: 'Cancel',
-      }).then((result) => {
+      }).then(async(result) => {
         // Check if the user confirmed the logout
         if (result.isConfirmed) {
-           cookie.setUserCookie(null)
-            navigate('/')
+           let response=await fetch('http://localhost:8000/logout');
+           console.log(response)
+           response=await response.json();
+           
+           navigate('/');
+            
         }
       })
       .catch((error)=>{

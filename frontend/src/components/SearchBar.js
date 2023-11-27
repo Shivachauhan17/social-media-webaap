@@ -1,7 +1,9 @@
 import React,{useState,useEffect,memo} from "react";
 import { useNavigate } from "react-router-dom";
+import Cookie from '../components/Cookie';
 
 const SearchBar=()=>{
+    const cookie=Cookie();
     const [input,setInput]=useState("")
     const navigate=useNavigate()
     const handleInputChange=(e)=>{
@@ -10,7 +12,8 @@ const SearchBar=()=>{
     }
 
     const handleSubmit=()=>{
-        navigate(`/publicProfile/?userName=${input}`)
+        cookie.setpublicUserCookie(input);
+        navigate('/publicProfile')
     }
 
     return(
