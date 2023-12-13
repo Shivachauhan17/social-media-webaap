@@ -14,7 +14,9 @@ const OwnerPost=()=>{
     const navigate=useNavigate()
     const [searchParams]=useSearchParams()
     const id=searchParams.get('id')
-    const userName=useSelector(state=>state.user.username)
+    const [userName,setUsername]=useState("")
+    const [myUserName,setMyUserName]=useState("");
+    console.log(myUserName)
     const post=useSelector(state=>state.post.post);
     const postTitle=`${userName}'s post`
     
@@ -29,11 +31,11 @@ const OwnerPost=()=>{
     useEffect(()=>{
         
         const fetchUser=async()=>{
-            let response=await fetch("http://localhost:8000",{
+            let response=await fetch("http://localhost:8000/home",{
                     credentials:"include"
                 });
                 response=await response.json();
-                dispatch(userActions.setUsername(response.user))
+                setMyUserName(response.user);
         }
 
         const getPost=async()=>{
@@ -48,6 +50,7 @@ const OwnerPost=()=>{
                     method:"POST"
                 });
                 response=await response.json();
+                setUsername(response.post.user)
                 dispatch(postActions.setPost(response.post))
                 
             }
@@ -112,7 +115,7 @@ const OwnerPost=()=>{
                     <FcLike className='text-4xl' onClick={putLike}/>
                     <h5 className='mt-2'>{post.likes}</h5>
                     </div>
-                    {userName===post.user && (<RiDeleteBinLine className='text-3xl mt-5 hover:text-4xl' onClick={handleDelete}/>)}
+                    {userName===myUserName && (<RiDeleteBinLine className='text-3xl mt-5 hover:text-4xl' onClick={handleDelete}/>)}
                 </div>
                
             <CommentBox postId={id}/>

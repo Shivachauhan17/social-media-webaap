@@ -196,7 +196,7 @@ module.exports = {
     try{
       await Comment.create({
         comment:req.body.comment,
-        person:req.body.person,
+        person:req.user.userName,
         post:req.body.post,
       })
       

@@ -2,7 +2,7 @@ import React,{useState,useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import './css/signup_login_page.css'
-import logo from 'C:/Users/Hp/Desktop/social-network-webaap/frontend/src/img/icon.png'
+import logo from '../img/icon.png'
 import GoogleLoginButton from '../components/GoogleLoginButton'
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 // import './css/Header.css'
-import logo from 'C:/Users/Hp/Desktop/social-network-webaap/frontend/src/img/icon.png'
+import logo from '../img/icon.png'
 import 'bootstrap/dist/css/bootstrap.css';
 import { useActionData, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'

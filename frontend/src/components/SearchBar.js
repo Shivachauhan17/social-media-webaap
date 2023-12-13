@@ -11,7 +11,8 @@ const SearchBar=()=>{
         setInput(value)
     }
 
-    const handleSubmit=()=>{
+    const handleSubmit=(e)=>{
+        e.preventDefault();
         cookie.setpublicUserCookie(input);
         navigate('/publicProfile')
     }
