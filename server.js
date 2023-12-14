@@ -53,12 +53,16 @@ app.use((req,res,next)=>{
   next();
 })
 
+
+
 app.use('/',mainRoutes)
 app.use('/post',postRoutes)
 app.use('/',OauthRoutes)
+
 // app.get('*', (req, res) => {
 //   res.sendFile( path.join(__dirname, './frontend/build','index.html'));
 // });
+
 
 
 

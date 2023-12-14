@@ -44,7 +44,7 @@ export default function Profile(){
     return(
         <ProfileContext.Provider value={{newPost,setNewPost}}>
             <Header/>
-           <Link to="/LiveNow"> <LiveIcon/></Link>
+           {/* <Link to="/LiveNow"> <LiveIcon/></Link> */}
             <div className="flex justify-around mt-20">
                 <div >
                     <Bio_Profile />
