@@ -10,33 +10,33 @@
 
 ## **Let's see demo imgaes**<br>
 ### 1.home or login signup page:<br>
-![home](demo_images/home.png)
+![home](https://res.cloudinary.com/dlsv5ndvq/image/upload/v1702573238/deom_social_app/bjmhropgnddstrv7k9ik.png)
 
 
 ### 2.Successful login:<br>
-![profile](demo_images/success_login.png)
+![profile](https://res.cloudinary.com/dlsv5ndvq/image/upload/v1702573241/deom_social_app/hkgdtdaerr56avigo2ly.png)
 
 
 ### 3.main Profile Page:<br>
-![profile](demo_images/profile.png)
+![profile](https://res.cloudinary.com/dlsv5ndvq/image/upload/v1702573239/deom_social_app/bkc7t35vtjzhue5ryj2q.png)
 
 ### 4.To change bio:<br>
-![changebio](demo_images/change_bio.png)
+![changebio](https://res.cloudinary.com/dlsv5ndvq/image/upload/v1702573240/deom_social_app/z5e0adasejgseevuvnxj.png)
 
 ### 5.Opening a post:<br>
 If the post belongs to the user who has logged in. he will be able to delete that post.
-![post](demo_images/post.png)
+![post](https://res.cloudinary.com/dlsv5ndvq/image/upload/v1702573240/deom_social_app/vlinojwzcoarsh1qskxk.png)
 
 
 ### 6.Public feed:<br>
-![post](demo_images/feed.png)
+![post](https://res.cloudinary.com/dlsv5ndvq/image/upload/v1702573240/deom_social_app/mmkh9ogq5kck11cywd0w.png)
 
 ### 7.Public profile:<br>
-![post](demo_images/public_profile.png)
+![post](https://res.cloudinary.com/dlsv5ndvq/image/upload/v1702573240/deom_social_app/xohsq9dctdyo1hn49fpw.png)
 
 ### 7.Lognout:<br>
 On logout backend session will be deleted
-![post](demo_images/logout.png)
+![post](https://res.cloudinary.com/dlsv5ndvq/image/upload/v1702573239/deom_social_app/u0zdcktjw7dd6xhr8jjx.png)
 
 
 <br>
