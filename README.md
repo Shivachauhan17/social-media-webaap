@@ -8,7 +8,7 @@
 
 
 
-## **Let's see demo imgaes**<br>
+## **Let's see demo images**<br>
 ### 1.home or login signup page:<br>
 ![home](https://res.cloudinary.com/dlsv5ndvq/image/upload/v1702573238/deom_social_app/bjmhropgnddstrv7k9ik.png)
 
@@ -34,7 +34,7 @@ If the post belongs to the user who has logged in. he will be able to delete tha
 ### 7.Public profile:<br>
 ![post](https://res.cloudinary.com/dlsv5ndvq/image/upload/v1702573240/deom_social_app/xohsq9dctdyo1hn49fpw.png)
 
-### 7.Lognout:<br>
+### 7.Logout:<br>
 On logout backend session will be deleted
 ![post](https://res.cloudinary.com/dlsv5ndvq/image/upload/v1702573239/deom_social_app/u0zdcktjw7dd6xhr8jjx.png)
 
