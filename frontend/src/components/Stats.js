@@ -13,7 +13,7 @@ const Stats=()=>{
 
     useEffect(()=>{
         const getStats=async()=>{
-            let response=await axios.get(`http://localhost:8000/post/getStats/${userName}`)
+            let response=await axios.get(`https://friends-loop.onrender.com/post/getStats/${userName}`)
             response=response.data.stats 
             setStats(response)
         }

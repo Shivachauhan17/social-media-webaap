@@ -13,7 +13,7 @@ const Feed=()=>{
     useEffect(()=>{
         const fetchPosts = async () => {
             try {
-              let response = await fetch('http://localhost:8000/post/getFeed',{
+              let response = await fetch('https://friends-loop.onrender.com/post/getFeed',{
                 method:"GET",
                 credentials:"include"
               });

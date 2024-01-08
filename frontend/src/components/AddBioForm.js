@@ -40,7 +40,7 @@ const AddBioForm=()=>{
     const handleSubmit=async (e)=>{
         try{
             e.preventDefault();
-            let response=await fetch('http://localhost:8000/post/addBio',{
+            let response=await fetch('https://friends-loop.onrender.com/post/addBio',{
                 method:"POST",
                 headers: {
                     "Content-Type": "application/json",

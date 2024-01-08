@@ -26,7 +26,7 @@ const Header=()=>{
       }).then(async(result) => {
         // Check if the user confirmed the logout
         if (result.isConfirmed) {
-           let response=await fetch('http://localhost:8000/logout');
+           let response=await fetch('https://friends-loop.onrender.com/logout');
            console.log(response)
            response=await response.json();
            

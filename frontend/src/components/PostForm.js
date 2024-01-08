@@ -34,7 +34,7 @@ const PostForm=()=>{
         formDataToSend.append('user',formData.user)
     
         try {
-          const response = await axios.post('http://localhost:8000/post/createPost', formDataToSend,{
+          const response = await axios.post('https://friends-loop.onrender.com/post/createPost', formDataToSend,{
             
               headers: {
                 'Content-Type': 'multipart/form-data', // Set the content type to handle file uploads

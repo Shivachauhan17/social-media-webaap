@@ -19,7 +19,7 @@ const Bio_Profile=()=>{
     useEffect(()=>{
     
         const fetchBio=async()=>{
-          const url='http://localhost:8000/post/getBio';
+          const url='https://friends-loop.onrender.com/post/getBio';
           let response=await fetch(url,{
             credentials: "include",
         });

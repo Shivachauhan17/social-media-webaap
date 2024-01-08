@@ -18,7 +18,7 @@ const CommentBox=({postId})=>{
     useEffect(()=>{
 
         const fetchUser=async()=>{
-            let response=await fetch("http://localhost:8000",{
+            let response=await fetch("https://friends-loop.onrender.com/",{
                     credentials:"include"
                 });
                 response=await response.json();
@@ -31,7 +31,7 @@ const CommentBox=({postId})=>{
 
         const getComments=async()=>{
             try{
-            let response=await fetch('http://localhost:8000/post/getComments',{
+            let response=await fetch('https://friends-loop.onrender.com/post/getComments',{
                 credentials:"include",
                 headers: {
                     "Content-Type": "application/json",
@@ -55,7 +55,7 @@ const CommentBox=({postId})=>{
     const handleSubmit=async(e)=>{
         e.preventDefault()
         try{
-        let response=await fetch('http://localhost:8000/post/comment',{
+        let response=await fetch('https://friends-loop.onrender.com/post/comment',{
         method:"POST",
         credentials:"include",
         headers:{

@@ -48,7 +48,7 @@ export default function LoginHelper(){
         
         e.preventDefault();
         try{
-            let response=await axios.post('http://localhost:8000/login',loginformdata)
+            let response=await axios.post('https://friends-loop.onrender.com/login',loginformdata)
             response=await response.data;
             
           if(response.error){

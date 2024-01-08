@@ -20,7 +20,7 @@ const FeedPostForPublic=()=>{
     useEffect(() => {
         const fetchPosts = async () => {
           try {
-            const url='http://localhost:8000/post/4public'
+            const url='https://friends-loop.onrender.com/post/4public'
             let response = await fetch(url, {
               credentials:"include",
               headers:{

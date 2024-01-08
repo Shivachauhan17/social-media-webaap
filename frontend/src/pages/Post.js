@@ -31,7 +31,7 @@ const OwnerPost=()=>{
     useEffect(()=>{
         
         const fetchUser=async()=>{
-            let response=await fetch("http://localhost:8000/home",{
+            let response=await fetch("https://friends-loop.onrender.com/home",{
                     credentials:"include"
                 });
                 response=await response.json();
@@ -41,7 +41,7 @@ const OwnerPost=()=>{
         const getPost=async()=>{
             try{
                 
-                let response=await fetch("http://localhost:8000/post/particular",{
+                let response=await fetch("https://friends-loop.onrender.com/post/particular",{
                     credentials:"include",
                     headers: {
                         "Content-Type": "application/json",
@@ -75,7 +75,7 @@ const OwnerPost=()=>{
 
     const putLike=async()=>{
          
-            let response=await fetch('http://localhost:8000/post/like',{
+            let response=await fetch('https://friends-loop.onrender.com/post/like',{
                 method:"PUT",
                 credentials:"include",
                 headers: {
@@ -92,7 +92,7 @@ const OwnerPost=()=>{
         }
 
     const handleDelete=async()=>{
-        await fetch(`http://localhost:8000/post/delete?id=${post._id}&c_id=${post.cloudinaryId}`,{
+        await fetch(`https://friends-loop.onrender.com/post/delete?id=${post._id}&c_id=${post.cloudinaryId}`,{
             method:"DELETE",
                 credentials:"include"
         })

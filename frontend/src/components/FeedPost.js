@@ -15,7 +15,7 @@ const FeedPost=()=>{
     useEffect(() => {
         const fetchPosts = async () => {
           try {
-            let response = await fetch('http://localhost:8000/post/',{
+            let response = await fetch('https://friends-loop.onrender.com/post/',{
               method:"POST",
               credentials:"include"
             });

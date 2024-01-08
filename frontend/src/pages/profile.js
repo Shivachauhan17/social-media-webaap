@@ -28,7 +28,7 @@ export default function Profile(){
 
     useEffect(()=>{
         const getUser=async()=>{
-            let response=await fetch("http://localhost:8000/home",{
+            let response=await fetch("https://friends-loop.onrender.com/home",{
                 credentials: "include",
             });
             response=await response.json();

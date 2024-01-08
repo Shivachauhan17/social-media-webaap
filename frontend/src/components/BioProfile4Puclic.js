@@ -17,7 +17,7 @@ const BioProfile4Public=({username})=>{
     useEffect(()=>{
     
         const fetchBio=async()=>{
-          const url='http://localhost:8000/post/getBioPublic';
+          const url='https://friends-loop.onrender.com/post/getBioPublic';
           let response=await fetch(url,{
             credentials: "include",
             method:"POST",
