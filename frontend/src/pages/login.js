@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Cookie from '../components/Cookie'
 import Header from '../components/Header';
-import axios from 'axios';
+import axios from '../axios_instance/axios';
 
 
 export default function LoginHelper(){

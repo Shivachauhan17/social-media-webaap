@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import axios from '../axios_instance/axios'
 import {AiOutlineLike} from 'react-icons/ai'
 import {BiCommentDetail} from 'react-icons/bi'
 import {GiPhotoCamera} from 'react-icons/gi'

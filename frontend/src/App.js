@@ -16,8 +16,8 @@ function App() {
     <BrowserRouter>
       <Routes>
       <Route path='/' exact element={<LoginSignup/>}/>
-      <Route path='/login' element={<Login />}/>
-      <Route path='/signup' element={<Signup />}/>
+      {/* <Route path='/login' element={<Login />}/>
+      <Route path='/signup' element={<Signup />}/> */}
       <Route path='/profile' element={<Profile/>}/>
       <Route path='/logout' element={<Profile/>}/>
       <Route path='/getOwnPost' exact element={<Post/>}/>

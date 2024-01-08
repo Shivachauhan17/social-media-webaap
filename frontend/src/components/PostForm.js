@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import {memo} from 'react';
-import axios from 'axios'
+import axios from '../axios_instance/axios'
 import { useProfileContext } from "../pages/profile";
 import {AiFillMail,AiOutlineArrowDown} from 'react-icons/ai'
 

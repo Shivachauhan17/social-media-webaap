@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 
 import {memo} from 'react';
-import axios from "axios";
+import axios from "../axios_instance/axios";
 import PostList from '../components/PostList'
 import Header from '../components/Header' 
 import { useSelector,useDispatch } from "react-redux";

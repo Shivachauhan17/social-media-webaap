@@ -44,7 +44,7 @@ const Bio_Profile=()=>{
                   className="shadow-lg"
                   src='https://imgs.search.brave.com/AMJIF4luRDh-XqO7A9Nmb2O84SqbuDIrugtKeEL5gx4/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG4u/ZmFuZG9td2lyZS5j/b20vd3AtY29udGVu/dC91cGxvYWRzLzIw/MjMvMDcvMzAwOTE1/NDYvSU1HXzAzMjku/anBlZw'/>
               
-                  <h3>{username}</h3>
+                  <h3 >{username}</h3>
                   
               </div>
 

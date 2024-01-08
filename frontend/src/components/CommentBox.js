@@ -1,5 +1,5 @@
 import React,{useState,useEffect, memo} from 'react'
-import axios from 'axios'
+import axios from '../axios_instance/axios'
 import Swal from 'sweetalert2'
 import {useSelector,useDispatch} from 'react-redux';
 import { postActions } from '../store/post-slice';

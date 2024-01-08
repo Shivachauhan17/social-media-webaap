@@ -62,8 +62,8 @@ module.exports = {
   getBio:async(req,res)=>{
     try{
       console.log(req.user)
-      const bio=await Bio.findOne({username:req.user.userName})
-      return res.json({bio:bio,username:req.user.userName})
+      const bio=await Bio.findOne({username:req.user?.userName})
+      return res.json({bio:bio,username:req.user?.userName})
     }
     catch(error){
       console.log(error)
