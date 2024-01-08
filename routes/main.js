@@ -10,7 +10,7 @@ router.get("/home", homeController.getIndex);
 // router.get("/profile", ensureAuth, postsController.getProfile);
 router.get("/feed",postsController.getFeed)
 // router.post("/login",authController.postLogin)
-router.post("/login",passport.authenticate("local",{failureRedirect: 'http://localhost:3000/loginFailure',successRedirect:'http://localhost:3000/loginSuccessful' }))
+router.post("/login",passport.authenticate("local",{failureRedirect: 'social-network-webaap-5lojemmso-shivas-projects-02e21579.vercel.app/loginFailure',successRedirect:'social-network-webaap-5lojemmso-shivas-projects-02e21579.vercel.app/loginSuccessful' }))
 router.get("/logout",authController.getLogout)
 router.post("/signup",authController.postSignup)
 

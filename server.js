@@ -18,7 +18,7 @@ const OauthRoutes=require('./routes/o_auth')
 require('./config/passport')(passport)
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: 'social-network-webaap-5lojemmso-shivas-projects-02e21579.vercel.app',
   credentials: true, // Allow cookies to be sent with requests
 };
 connectDB()
