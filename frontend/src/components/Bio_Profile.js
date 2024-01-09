@@ -12,7 +12,7 @@ import { BsFillBalloonHeartFill } from 'react-icons/bs';
 
 const Bio_Profile=()=>{
   const dispatch=useDispatch()
-  const username=useSelector(state=>state.user.username)
+  const username=useSelector(state=>state.user?.username)
     const bio=useSelector(state=>state.user.bio);
     const user=useSelector(state=>state.user);
     console.log(user)

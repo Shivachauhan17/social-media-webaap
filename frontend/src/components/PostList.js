@@ -4,7 +4,7 @@ import {  useSelector } from 'react-redux/es/hooks/useSelector';
 
 const Postlist=({posts})=>{
     
-    const userName=useSelector(state=>state.user.username)
+    const userName=useSelector(state=>state.user?.username)
 
     return(
     <div className='relative top-14'>

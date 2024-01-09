@@ -26,7 +26,7 @@ module.exports = {
   },
   getProfilePost: async (req, res) => {
     try{
-    const posts=await Post.find({user:req.user.userName})
+    const posts=await Post.find({user:req.user?.userName})
     res.json({posts:posts})}
     catch(err){
       console.log(err)
@@ -138,7 +138,7 @@ module.exports = {
         cloudinaryId:result.public_id,
         caption:req.body.caption,
         likes:0,
-        user:req.user.userName,
+        user:req.user?.userName,
       })
       console.log("post has been added")
       return res.json({msg:"post has been added"})
@@ -196,7 +196,7 @@ module.exports = {
     try{
       await Comment.create({
         comment:req.body.comment,
-        person:req.user.userName,
+        person:req.user?.userName,
         post:req.body.post,
       })
       
@@ -225,7 +225,7 @@ module.exports = {
       
       console.log(req.user)
         // Check if a document with the given username exists
-        const existingBio = await Bio.findOne({username: req.user.userName });
+        const existingBio = await Bio.findOne({username: req.user?.userName });
         let bio=existingBio;
         if (existingBio) {
             // Update the existing document
@@ -238,7 +238,7 @@ module.exports = {
         } else {
             // Create a new document if it doesn't exist
             const newBio = new Bio({
-                username: req.user.userName,
+                username: req.user?.userName,
                 profession: req.body.profession,
                 hobby: req.body.hobby,
                 birthday: req.body.birthday,

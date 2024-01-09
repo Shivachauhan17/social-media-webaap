@@ -8,7 +8,7 @@ import { userActions } from '../store/user-slice';
 const CommentBox=({postId})=>{
     const dispatch=useDispatch()
     const comments=useSelector(state=>state.post.comments)
-    const userName=useSelector(state=>state.user.username)
+    const userName=useSelector(state=>state.user?.username)
     const [formData,setFormData]=useState({
         person:userName,
         comment:"",

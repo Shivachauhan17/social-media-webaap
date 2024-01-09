@@ -18,13 +18,15 @@ const OauthRoutes=require('./routes/o_auth')
 require('./config/passport')(passport)
 
 const corsOptions = {
-  origin: 'https://social-network-webaap.vercel.app/',
+  origin: 'https://social-network-webaap.vercel.app',
   credentials: true, // Allow cookies to be sent with requests
 };
 connectDB()
 app.use(cors(corsOptions))
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
+
+app.set("trust proxy", 1);
 
 app.use(
   session({
@@ -35,8 +37,11 @@ app.use(
         mongoUrl: process.env.DB_STRING,
         collection: 'sessions'
       }),
+      proxy:true,
       cookie:{
-        maxAge:1000*60*60*24
+        maxAge:1000*60*60*24,
+        secure: true,
+        sameSite: "none" 
       }    
   })
   )

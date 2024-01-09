@@ -23,7 +23,7 @@ export default function Profile(){
     
     const [newPost,setNewPost]=useState(false);
     const dispatch=useDispatch();
-    const username=useSelector(state=>state.user.username);
+    const username=useSelector(state=>state.user?.username);
 
 
     useEffect(()=>{
