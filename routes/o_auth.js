@@ -6,7 +6,7 @@ router.get('/auth/google',
 
 
   router.get('/auth/google/callback', 
-  passport.authenticate('google', {failureRedirect: 'social-network-webaap-5lojemmso-shivas-projects-02e21579.vercel.app/loginFailure',successRedirect:'social-network-webaap-5lojemmso-shivas-projects-02e21579.vercel.app/loginSuccessful' })
+  passport.authenticate('google', {failureRedirect: 'https://social-network-webaap.vercel.app/loginFailure',successRedirect:'https://social-network-webaap.vercel.app/loginSuccessful' })
   );
 
 module.exports=router
